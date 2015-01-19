@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">QinYuan</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="app_name">沁园网点</string>
+    <!-- XListView -->
+    <string name="xlistview_header_hint_normal">Enlarge</string>
+    <string name="xlistview_header_hint_ready">Release</string>
+    <string name="xlistview_header_hint_loading">Loading...</string>
+    <string name="xlistview_header_last_time">Last update:</string>
+    <string name="xlistview_footer_hint_normal">More contents</string>
+    <string name="xlistview_footer_hint_ready">Release to get more contents</string>
+    <!-- XListView -->
+
+    <!--System-->
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_section">SectionActivity</string>
+    <string name="title_activity_around_me">AroundMeActivity</string>
+    <string name="title_activity_user_info">UserInfoActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <!--System-->
+
+    <string name="tip">提示</string>
+    <string name="quit_app_question">你确定要退出沁园网点吗？</string>
+    <string name="yes">确定</string>
+    <string name="no">取消</string>
+    <string name="section">区域网点</string>
+    <string name="around_me">附近网点</string>
+    <string name="user_info">用户信息</string>
+    <string name="input_username_and_password">请输入用户名和密码</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="empty_username">用户名不能为空</string>
+    <string name="empty_password">密码不能为空</string>
+    <string name="invalid_username_or_password">用户名或密码错误</string>
+    <string name="login">登录</string>
 
 </resources>

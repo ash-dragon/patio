@@ -9,4 +9,36 @@
         <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="MyActionBar">
+        <attr name="btnText" format="string"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="HorizontalListView">
+        <attr name="dividerWidth" format="dimension" />
+        <attr name="android:divider" />
+        <attr name="android:requiresFadingEdge" />
+        <attr name="android:fadingEdgeLength" />
+    </declare-styleable>
+
+    <declare-styleable name="OptionItem">
+        <attr name="left_text" format="string" />
+        <attr name="right_text" format="string" />
+        <attr name="right_type" format="enum">
+            <enum name="arrow" value="0" />
+            <enum name="switch_view" value="1" />
+            <enum name="checkbox" value="2" />
+            <enum name="load" value="3" />
+            <enum name="add" value="4" />
+            <enum name="edit_text" value="5" />
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="Helvetica">
+        <attr name="text_type" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="italics" value="2" />
+        </attr>
+    </declare-styleable>
 </resources>
