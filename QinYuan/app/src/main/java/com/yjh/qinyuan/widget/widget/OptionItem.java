@@ -1,16 +1,13 @@
 package com.yjh.qinyuan.widget.widget;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
-import com.yjh.qinyuan.R;
 
 public class OptionItem extends RelativeLayout {
 

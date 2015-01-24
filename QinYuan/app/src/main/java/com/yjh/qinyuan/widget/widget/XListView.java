@@ -21,7 +21,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
+
 import com.yjh.qinyuan.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

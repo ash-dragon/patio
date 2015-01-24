@@ -3,6 +3,7 @@ package com.yjh.qinyuan.widget.widget;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+
 import com.yjh.qinyuan.R;
 
 public class LoadingProgress extends ProgressDialog {

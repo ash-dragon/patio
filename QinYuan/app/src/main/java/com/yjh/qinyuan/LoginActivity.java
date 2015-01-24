@@ -3,18 +3,21 @@ package com.yjh.qinyuan;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Toast;
 
 import com.yjh.qinyuan.common.BaseActivity;
+import com.yjh.qinyuan.sugar.UserInfo;
 import com.yjh.qinyuan.main.MainActivity;
-import com.yjh.qinyuan.util.SharedPreferenceUtils;
+import com.yjh.qinyuan.task.LoginTask;
+import com.yjh.qinyuan.util.HttpUtils;
 import com.yjh.qinyuan.widget.widget.HelveticaButton;
 import com.yjh.qinyuan.widget.widget.HelveticaEditText;
-import com.yjh.qinyuan.widget.widget.HelveticaTextView;
+import com.yjh.qinyuan.widget.widget.LoadingProgress;
+
+import net.tsz.afinal.http.AjaxCallBack;
 
 
 public class LoginActivity extends BaseActivity {
@@ -41,18 +44,57 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (validLogin()){
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+                    getUserTask();
                 }
             }
         });
     }
 
     private boolean validLogin() {
-        // todo, valid
-        // todo, if success save preference:
-//        SharedPreferenceUtils.saveSharedPreference(LoginActivity.this, MyApplication.LOGIN_NAME, MyApplication.LOGIN_KEY, true);
-        return true;
+        boolean isValid = true;
+        if (TextUtils.isEmpty(mUsernameText.getText())) {
+            mUsernameText.setError(getString(R.string.empty_username));
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(mPasswordText.getText())) {
+            mPasswordText.setError(getString(R.string.empty_password));
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    private void getUserTask() {
+        LoginTask task = new LoginTask(this, mUsernameText.getText().toString(),
+                mPasswordText.getText().toString(), new AjaxCallBack<String>() {
+            @Override
+            public void onStart() {
+                super.onStart();
+                mProgressBar = LoadingProgress.getProgressBar(LoginActivity.this);
+            }
+
+            @Override
+            public void onSuccess(String s) {
+                super.onSuccess(s);
+                mProgressBar.dismiss();
+                UserInfo userInfo = HttpUtils.getJsonData(s, UserInfo.class);
+                userInfo.saveData(userInfo);
+                MyApplication.sUserKey = userInfo.getKey();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
+            }
+
+
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                mProgressBar.dismiss();
+                Toast.makeText(LoginActivity.this,
+                        R.string.invalid_username_or_password, Toast.LENGTH_LONG).show();
+            }
+        });
+        task.executeGet();
     }
 
     @Override

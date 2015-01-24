@@ -50,7 +50,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Scroller;
+
 import com.yjh.qinyuan.R;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

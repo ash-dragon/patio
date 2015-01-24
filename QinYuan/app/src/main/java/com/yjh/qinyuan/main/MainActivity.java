@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.TabHost;
 
 import com.yjh.qinyuan.R;
+import com.yjh.qinyuan.main.aroundme.AroundMeActivity;
+import com.yjh.qinyuan.main.section.SectionActivity;
+import com.yjh.qinyuan.main.userinfo.UserInfoActivity;
 import com.yjh.qinyuan.widget.widget.MyActionBar;
 
 public class MainActivity extends ActivityGroup {
@@ -40,9 +43,12 @@ public class MainActivity extends ActivityGroup {
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(getLocalActivityManager());
         mTabHost.setBackgroundColor(getResources().getColor(R.color.transparent));
-        mTabHost.addTab(mTabHost.newTabSpec(TAB_SECTION).setIndicator(tabChat).setContent(new Intent(this, SectionActivity.class)));
-        mTabHost.addTab(mTabHost.newTabSpec(TAB_AROUND_ME).setIndicator(tabContact).setContent(new Intent(this, AroundMeActivity.class)));
-        mTabHost.addTab(mTabHost.newTabSpec(TAB_USER_INFO).setIndicator(tabStream).setContent(new Intent(this, UserInfoActivity.class)));
+        mTabHost.addTab(mTabHost.newTabSpec(TAB_SECTION)
+                .setIndicator(tabChat).setContent(new Intent(this, SectionActivity.class)));
+        mTabHost.addTab(mTabHost.newTabSpec(TAB_AROUND_ME)
+                .setIndicator(tabContact).setContent(new Intent(this, AroundMeActivity.class)));
+        mTabHost.addTab(mTabHost.newTabSpec(TAB_USER_INFO)
+                .setIndicator(tabStream).setContent(new Intent(this, UserInfoActivity.class)));
 
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -52,7 +58,7 @@ public class MainActivity extends ActivityGroup {
             }
         });
 
-//        mTabHost.setCurrentTab(AROUND_ME);
+        mTabHost.setCurrentTab(USER_INFO);
     }
 
     public MyActionBar getActionView() {
