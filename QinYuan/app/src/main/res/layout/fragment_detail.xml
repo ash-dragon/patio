@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/simple_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:background="@drawable/ic_launcher" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                        android:id="@+id/n_name"
+                        android:text="guomeida"
+                        android:textSize="@dimen/label_text_size"
+                        style="@style/label_text" />
+                    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                        android:id="@+id/label_phone1"
+                        android:text="@string/phone1"
+                        android:layout_below="@+id/n_name"
+                        style="@style/label_text" />
+                    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                        android:id="@+id/phone1"
+                        android:text="1231111111"
+                        android:layout_below="@+id/n_name"
+                        android:layout_toRightOf="@id/label_phone1"
+                        style="@style/label_text" />
+                    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                        android:id="@+id/label_phone2"
+                        android:text="@string/phone2"
+                        android:layout_below="@+id/label_phone1"
+                        style="@style/label_text" />
+                    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                        android:id="@+id/phone2"
+                        android:text="123"
+                        android:layout_below="@+id/label_phone1"
+                        android:layout_toRightOf="@id/label_phone1"
+                        style="@style/label_text" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                android:id="@+id/label_contact"
+                android:text="@string/contact"
+                android:layout_below="@+id/simple_item"
+                style="@style/label_text" />
+            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                android:id="@+id/contact"
+                android:text="123"
+                android:layout_below="@+id/simple_item"
+                android:layout_toRightOf="@id/label_contact"
+                style="@style/label_text" />
+
+            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                android:id="@+id/label_address"
+                android:text="@string/address"
+                android:layout_below="@+id/label_contact"
+                style="@style/label_text" />
+            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                android:id="@+id/address"
+                android:text="123"
+                android:layout_below="@+id/label_contact"
+                android:layout_toRightOf="@id/label_address"
+                style="@style/label_text" />
+
+            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                android:id="@+id/label_category1"
+                android:text="@string/category1"
+                android:layout_below="@+id/address"
+                style="@style/label_text" />
+            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                android:id="@+id/category1"
+                android:text="123"
+                android:layout_below="@+id/label_address"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:layout_toRightOf="@id/label_category1"
+                style="@style/label_text" />
+
+            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                android:id="@+id/label_category2"
+                android:text="@string/category2"
+                android:layout_below="@+id/label_category1"
+                style="@style/label_text" />
+            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                android:id="@+id/category2"
+                android:text="123"
+                android:layout_below="@+id/label_category1"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:layout_toRightOf="@id/label_category2"
+                style="@style/label_text" />
+
+            <com.baidu.mapapi.map.MapView
+                android:id="@+id/map"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/label_category2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+            </com.baidu.mapapi.map.MapView>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -5,19 +5,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yjh.qinyuan.common.BaseActivity;
-import com.yjh.qinyuan.sugar.UserInfo;
+import com.yjh.qinyuan.gson.UserInfoModel;
 import com.yjh.qinyuan.main.MainActivity;
 import com.yjh.qinyuan.task.LoginTask;
+import com.yjh.qinyuan.task.RequestCallBack;
 import com.yjh.qinyuan.util.HttpUtils;
 import com.yjh.qinyuan.widget.widget.HelveticaButton;
 import com.yjh.qinyuan.widget.widget.HelveticaEditText;
-import com.yjh.qinyuan.widget.widget.LoadingProgress;
-
-import net.tsz.afinal.http.AjaxCallBack;
 
 
 public class LoginActivity extends BaseActivity {
@@ -48,6 +49,16 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });
+
+        mPasswordText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    mLoginButton.performClick();
+                }
+                return true;
+            }
+        });
     }
 
     private boolean validLogin() {
@@ -67,31 +78,39 @@ public class LoginActivity extends BaseActivity {
 
     private void getUserTask() {
         LoginTask task = new LoginTask(this, mUsernameText.getText().toString(),
-                mPasswordText.getText().toString(), new AjaxCallBack<String>() {
+                mPasswordText.getText().toString(), new RequestCallBack(this, mProgressBar) {
             @Override
             public void onStart() {
                 super.onStart();
-                mProgressBar = LoadingProgress.getProgressBar(LoginActivity.this);
             }
 
             @Override
             public void onSuccess(String s) {
                 super.onSuccess(s);
-                mProgressBar.dismiss();
-                UserInfo userInfo = HttpUtils.getJsonData(s, UserInfo.class);
-                userInfo.saveData(userInfo);
-                MyApplication.sUserKey = userInfo.getKey();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
+
+                try {
+                    UserInfoModel userInfoModel = HttpUtils.getJsonData(s, UserInfoModel.class);
+                    if (userInfoModel.isSuccess()) {
+                        userInfoModel.saveData(userInfoModel);
+                        MyApplication.sUserKey = userInfoModel.getKey();
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this,
+                                R.string.invalid_username_or_password, Toast.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(LoginActivity.this,
+                            R.string.invalid_username_or_password, Toast.LENGTH_LONG).show();
+                }
             }
 
 
             @Override
             public void onFailure(Throwable t, int errorNo, String strMsg) {
                 super.onFailure(t, errorNo, strMsg);
-                mProgressBar.dismiss();
-                Toast.makeText(LoginActivity.this,
-                        R.string.invalid_username_or_password, Toast.LENGTH_LONG).show();
+
             }
         });
         task.executeGet();

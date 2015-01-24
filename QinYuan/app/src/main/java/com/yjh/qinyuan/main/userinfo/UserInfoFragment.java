@@ -11,13 +11,11 @@ import com.yjh.qinyuan.LoginActivity;
 import com.yjh.qinyuan.MyApplication;
 import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.BaseFragment;
-import com.yjh.qinyuan.sugar.UserData;
-import com.yjh.qinyuan.sugar.UserInfo;
+import com.yjh.qinyuan.gson.UserData;
+import com.yjh.qinyuan.gson.UserInfoModel;
 import com.yjh.qinyuan.task.LogoutTask;
+import com.yjh.qinyuan.task.RequestCallBack;
 import com.yjh.qinyuan.widget.widget.HelveticaTextView;
-import com.yjh.qinyuan.widget.widget.LoadingProgress;
-
-import net.tsz.afinal.http.AjaxCallBack;
 
 public class UserInfoFragment extends BaseFragment {
 
@@ -25,6 +23,7 @@ public class UserInfoFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_user_info, container, false);
+        init(view);
 
         return view;
     }
@@ -37,8 +36,7 @@ public class UserInfoFragment extends BaseFragment {
         HelveticaTextView phone2Text = (HelveticaTextView) rootView.findViewById(R.id.phone2);
         HelveticaTextView categoryText = (HelveticaTextView) rootView.findViewById(R.id.category);
 
-        UserData userData = UserInfo.find(UserInfo.class,
-                "key = ?", new String[]{MyApplication.sUserKey}).get(0).getUserData();
+        UserData userData = UserInfoModel.listAll(UserInfoModel.class).get(0).getUserData();
         usernameText.setText(userData.getUsername());
         nameText.setText(userData.getName());
         phone1Text.setText(userData.getPhone1());
@@ -54,22 +52,10 @@ public class UserInfoFragment extends BaseFragment {
     }
 
     private void logoutTask() {
-        LogoutTask task = new LogoutTask(getActivity(), new AjaxCallBack<String>() {
-            @Override
-            public void onStart() {
-                super.onStart();
-                mProgressBar = LoadingProgress.getProgressBar(getActivity());
-            }
-
+        LogoutTask task = new LogoutTask(getActivity(), new RequestCallBack(getActivity(), mProgressBar) {
             @Override
             public void onSuccess(String s) {
                 super.onSuccess(s);
-                logout();
-            }
-
-            @Override
-            public void onFailure(Throwable t, int errorNo, String strMsg) {
-                super.onFailure(t, errorNo, strMsg);
                 logout();
             }
         });
@@ -77,7 +63,7 @@ public class UserInfoFragment extends BaseFragment {
     }
 
     private void logout() {
-        mProgressBar.dismiss();
+        UserInfoModel.clearData();
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

@@ -58,7 +58,7 @@ public class MainActivity extends ActivityGroup {
             }
         });
 
-        mTabHost.setCurrentTab(USER_INFO);
+        mTabHost.setCurrentTab(SECTION);
     }
 
     public MyActionBar getActionView() {

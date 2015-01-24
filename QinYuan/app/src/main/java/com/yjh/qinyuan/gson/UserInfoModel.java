@@ -1,4 +1,4 @@
-package com.yjh.qinyuan.sugar;
+package com.yjh.qinyuan.gson;
 
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
@@ -6,12 +6,12 @@ import com.orm.SugarRecord;
 import java.io.Serializable;
 import java.util.List;
 
-public class UserInfo extends SugarRecord<UserInfo> implements Serializable {
+public class UserInfoModel extends SugarRecord<UserInfoModel> implements Serializable {
     @SerializedName("data") UserData userData;
     @SerializedName("key") String key;
     @SerializedName("msg") boolean isSuccess;
 
-    public UserInfo() {
+    public UserInfoModel() {
     }
 
     public UserData getUserData() {
@@ -38,14 +38,22 @@ public class UserInfo extends SugarRecord<UserInfo> implements Serializable {
         this.isSuccess = isSuccess;
     }
 
-    public void saveData(UserInfo userInfo) {
-        List<UserInfo> userInfos = UserInfo.find(UserInfo.class, "key = ?", new String[]{userInfo.getKey()});
+    public void saveData(UserInfoModel userInfoModel) {
+        List<UserInfoModel> userInfoModels = UserInfoModel.listAll(UserInfoModel.class);
 
-        for (UserInfo info : userInfos) {
+        for (UserInfoModel info : userInfoModels) {
             info.delete();
         }
 
-        userInfo.getUserData().save();
-        userInfo.save();
+        userInfoModel.getUserData().save();
+        userInfoModel.save();
+    }
+
+    public static void clearData() {
+        List<UserInfoModel> userInfoModels = UserInfoModel.listAll(UserInfoModel.class);
+
+        for (UserInfoModel info : userInfoModels) {
+            info.delete();
+        }
     }
 }

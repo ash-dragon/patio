@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.TabActivity;
-import com.yjh.qinyuan.sugar.UserInfo;
 
 public class UserInfoActivity extends TabActivity {
 

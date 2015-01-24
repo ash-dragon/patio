@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.yjh.qinyuan.main.section.AgentListFragment">
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+        android:id="@+id/no_data_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/no_data"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="@dimen/label_text_size"/>
+
+</FrameLayout>

@@ -51,14 +51,14 @@ public abstract class BaseHttpTask {
 	public void executeGet() {
         Log.e(TAG, "GET");
         Log.e(TAG, "url: " + mUrl);
-        Log.e(TAG, "params" + mParams);
+        Log.e(TAG, "params:" + mParams);
         mHttp.get(mUrl.toString(), mParams, mCallBack);
     }
 
     public void executePost() {
         Log.e(TAG, "POST");
         Log.e(TAG, "url: " + mUrl);
-        Log.e(TAG, "params" + mParams);
+        Log.e(TAG, "params: " + mParams);
         mHttp.get(mUrl.toString(), mParams, mCallBack);
     }
 }

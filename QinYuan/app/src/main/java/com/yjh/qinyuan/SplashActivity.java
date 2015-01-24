@@ -6,7 +6,9 @@ import android.os.Handler;
 
 import com.yjh.qinyuan.common.BaseActivity;
 import com.yjh.qinyuan.main.MainActivity;
-import com.yjh.qinyuan.util.SharedPreferenceUtils;
+import com.yjh.qinyuan.gson.UserInfoModel;
+
+import java.util.List;
 
 public class SplashActivity extends BaseActivity {
 
@@ -25,8 +27,10 @@ public class SplashActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (SharedPreferenceUtils.getSharedPreferenceBoolean(
-                        SplashActivity.this, MyApplication.LOGIN_TOKEN_NAME, MyApplication.LOGIN_TOKEN_KEY)) {
+                List<UserInfoModel> infoModels = UserInfoModel.listAll(UserInfoModel.class);
+
+                if (infoModels.size() == 1) {
+                    MyApplication.sUserKey = infoModels.get(0).getKey();
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 } else {
                     startActivity(new Intent(SplashActivity.this, LoginActivity.class));

@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -27,6 +28,7 @@
     <com.yjh.qinyuan.widget.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/name"
+        android:layout_below="@+id/label_username"
         android:layout_toRightOf="@+id/label_name"/>
 
     <com.yjh.qinyuan.widget.widget.HelveticaTextView
@@ -38,6 +40,7 @@
     <com.yjh.qinyuan.widget.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/phone1"
+        android:layout_below="@+id/label_name"
         android:layout_toRightOf="@+id/label_phone1"/>
 
     <com.yjh.qinyuan.widget.widget.HelveticaTextView
@@ -49,6 +52,7 @@
     <com.yjh.qinyuan.widget.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/phone2"
+        android:layout_below="@+id/label_phone1"
         android:layout_toRightOf="@+id/label_phone2"/>
 
     <com.yjh.qinyuan.widget.widget.HelveticaTextView
@@ -60,6 +64,7 @@
     <com.yjh.qinyuan.widget.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/category"
+        android:layout_below="@+id/label_phone2"
         android:layout_toRightOf="@+id/label_category"/>
 
     <com.yjh.qinyuan.widget.widget.HelveticaButton

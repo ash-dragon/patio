@@ -1,4 +1,4 @@
-package com.yjh.qinyuan.sugar;
+package com.yjh.qinyuan.gson;
 
 import com.google.gson.annotations.SerializedName;
 import com.orm.SugarRecord;
