@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.yjh.qinyuan.LoginActivity;
 import com.yjh.qinyuan.MyApplication;
 import com.yjh.qinyuan.R;
@@ -20,9 +21,15 @@ import com.yjh.qinyuan.widget.HelveticaTextView;
 public class UserInfoFragment extends BaseFragment {
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_user_info, container, false);
+        view.setClickable(true);
         init(view);
 
         return view;

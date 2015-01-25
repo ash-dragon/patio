@@ -20,5 +20,8 @@ public class Constants {
     public static final String MODEL_SITE = "model_site";
     public static final String MODEL_AGENT = "model_agent";
     public static final String MODEL_TOWN_BRANCH = "model_town_branch";
+    public static final String LONGITUDE = "Longitude";
+    public static final String LATITUDE = "Latitude";
+    public static final String LEN = "len";
 
 }

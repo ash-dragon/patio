@@ -40,6 +40,7 @@
     <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/phone1"
+        android:autoLink="phone"
         android:layout_below="@+id/label_name"
         android:layout_toRightOf="@+id/label_phone1"/>
 
@@ -52,6 +53,7 @@
     <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/phone2"
+        android:autoLink="phone"
         android:layout_below="@+id/label_phone1"
         android:layout_toRightOf="@+id/label_phone2"/>
 

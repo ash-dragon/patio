@@ -1,6 +1,7 @@
 package com.yjh.qinyuan.gson;
 
 import com.google.gson.annotations.SerializedName;
+import com.yjh.qinyuan.util.Constants;
 
 import java.io.Serializable;
 
@@ -185,7 +186,7 @@ public class TownBranch implements Serializable {
     }
 
     public String getImage1() {
-        return image1;
+        return Constants.DOMAIN + image1;
     }
 
     public void setImage1(String image1) {

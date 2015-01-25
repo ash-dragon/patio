@@ -74,44 +74,10 @@ public class BMapApiDemoMain extends Activity {
 	}
 
 	private static final DemoInfo[] demos = {
-			new DemoInfo(R.string.demo_title_basemap,
-					R.string.demo_desc_basemap, BaseMapDemo.class),
-			new DemoInfo(R.string.demo_title_map_fragment,
-					R.string.demo_desc_map_fragment, MapFragmentDemo.class),
-			new DemoInfo(R.string.demo_title_multimap,
-					R.string.demo_desc_multimap, MultiMapViewDemo.class),
-			new DemoInfo(R.string.demo_title_layers, R.string.demo_desc_layers,
-					LayersDemo.class),
-			new DemoInfo(R.string.demo_title_control,
-					R.string.demo_desc_control, MapControlDemo.class),
-			new DemoInfo(R.string.demo_title_ui, R.string.demo_desc_ui,
-					UISettingDemo.class),
+
 			new DemoInfo(R.string.demo_title_location,
 					R.string.demo_desc_location, LocationDemo.class),
-			new DemoInfo(R.string.demo_title_geometry,
-					R.string.demo_desc_geometry, GeometryDemo.class),
-			new DemoInfo(R.string.demo_title_overlay,
-					R.string.demo_desc_overlay, OverlayDemo.class),
-			new DemoInfo(R.string.demo_title_offline,
-					R.string.demo_desc_offline, OfflineDemo.class),
-			new DemoInfo(R.string.demo_title_poi, R.string.demo_desc_poi,
-					PoiSearchDemo.class),
-			new DemoInfo(R.string.demo_title_geocode,
-					R.string.demo_desc_geocode, GeoCoderDemo.class),
-			new DemoInfo(R.string.demo_title_route, R.string.demo_desc_route,
-					RoutePlanDemo.class),
-			new DemoInfo(R.string.demo_title_bus, R.string.demo_desc_bus,
-					BusLineSearchDemo.class),
-			new DemoInfo(R.string.demo_title_heatmap, R.string.demo_desc_heatmap,
-					HeatMapDemo.class),
-			new DemoInfo(R.string.demo_title_share, R.string.demo_desc_share,
-					ShareDemo.class),
-			new DemoInfo(R.string.demo_title_cloud, R.string.demo_desc_cloud,
-					CloudSearchDemo.class),
-			new DemoInfo(R.string.demo_title_navi, R.string.demo_desc_navi,
-					NaviDemo.class),
-			new DemoInfo(R.string.demo_title_opengl, R.string.demo_desc_opengl,
-					OpenglDemo.class)
+			
 	};
 
 	@Override

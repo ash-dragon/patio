@@ -32,76 +32,17 @@ public class LocationDemo extends Activity {
 	// 定位相关
 	LocationClient mLocClient;
 	public MyLocationListenner myListener = new MyLocationListenner();
-	private LocationMode mCurrentMode;
-	BitmapDescriptor mCurrentMarker;
 
 	MapView mMapView;
 	BaiduMap mBaiduMap;
 
 	// UI相关
-	OnCheckedChangeListener radioButtonListener;
-	Button requestLocButton;
 	boolean isFirstLoc = true;// 是否首次定位
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location);
-		requestLocButton = (Button) findViewById(R.id.button1);
-		mCurrentMode = LocationMode.NORMAL;
-		requestLocButton.setText("普通");
-		OnClickListener btnClickListener = new OnClickListener() {
-			public void onClick(View v) {
-				switch (mCurrentMode) {
-				case NORMAL:
-					requestLocButton.setText("跟随");
-					mCurrentMode = LocationMode.FOLLOWING;
-					mBaiduMap
-							.setMyLocationConfigeration(new MyLocationConfiguration(
-									mCurrentMode, true, mCurrentMarker));
-					break;
-				case COMPASS:
-					requestLocButton.setText("普通");
-					mCurrentMode = LocationMode.NORMAL;
-					mBaiduMap
-							.setMyLocationConfigeration(new MyLocationConfiguration(
-									mCurrentMode, true, mCurrentMarker));
-					break;
-				case FOLLOWING:
-					requestLocButton.setText("罗盘");
-					mCurrentMode = LocationMode.COMPASS;
-					mBaiduMap
-							.setMyLocationConfigeration(new MyLocationConfiguration(
-									mCurrentMode, true, mCurrentMarker));
-					break;
-				}
-			}
-		};
-		requestLocButton.setOnClickListener(btnClickListener);
-
-		RadioGroup group = (RadioGroup) this.findViewById(R.id.radioGroup);
-		radioButtonListener = new OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-				if (checkedId == R.id.defaulticon) {
-					// 传入null则，恢复默认图标
-					mCurrentMarker = null;
-					mBaiduMap
-							.setMyLocationConfigeration(new MyLocationConfiguration(
-									mCurrentMode, true, null));
-				}
-				if (checkedId == R.id.customicon) {
-					// 修改为自定义marker
-					mCurrentMarker = BitmapDescriptorFactory
-							.fromResource(R.drawable.icon_geo);
-					mBaiduMap
-							.setMyLocationConfigeration(new MyLocationConfiguration(
-									mCurrentMode, true, mCurrentMarker));
-				}
-			}
-		};
-		group.setOnCheckedChangeListener(radioButtonListener);
-
 		// 地图初始化
 		mMapView = (MapView) findViewById(R.id.bmapView);
 		mBaiduMap = mMapView.getMap();
@@ -146,28 +87,28 @@ public class LocationDemo extends Activity {
 		public void onReceivePoi(BDLocation poiLocation) {
 		}
 	}
-
-	@Override
-	protected void onPause() {
-		mMapView.onPause();
-		super.onPause();
-	}
-
-	@Override
-	protected void onResume() {
-		mMapView.onResume();
-		super.onResume();
-	}
-
-	@Override
-	protected void onDestroy() {
-		// 退出时销毁定位
-		mLocClient.stop();
-		// 关闭定位图层
-		mBaiduMap.setMyLocationEnabled(false);
-		mMapView.onDestroy();
-		mMapView = null;
-		super.onDestroy();
-	}
+//
+//	@Override
+//	protected void onPause() {
+//		mMapView.onPause();
+//		super.onPause();
+//	}
+//
+//	@Override
+//	protected void onResume() {
+//		mMapView.onResume();
+//		super.onResume();
+//	}
+//
+//	@Override
+//	protected void onDestroy() {
+//		// 退出时销毁定位
+//		mLocClient.stop();
+//		// 关闭定位图层
+//		mBaiduMap.setMyLocationEnabled(false);
+//		mMapView.onDestroy();
+//		mMapView = null;
+//		super.onDestroy();
+//	}
 
 }

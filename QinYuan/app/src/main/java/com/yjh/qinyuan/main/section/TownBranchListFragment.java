@@ -35,7 +35,6 @@ public class TownBranchListFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_branch_list, container, false);
         view.setClickable(true);
-        view.setClickable(true);
         init(view);
 
         return view;
