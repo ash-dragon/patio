@@ -63,7 +63,11 @@ public class AroundMeFragment extends BaseFragment {
         getActionBar().setRightButton(R.string.refresh, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mMapView = null;
+                mMap.clear();
+                mMarkers = new ArrayList<Marker>();
+                mShopMarkers = new ArrayList<ShopMarker>();
+                mIsFirstLoc = true;
+                mMapView.invalidate();
                 init();
             }
         });

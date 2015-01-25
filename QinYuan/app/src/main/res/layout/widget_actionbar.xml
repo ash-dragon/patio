@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:background="@color/white">
 
     <com.yjh.qinyuan.widget.HelveticaTextView
@@ -8,18 +8,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:textSize="@dimen/label_text_size"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
 
     <com.yjh.qinyuan.widget.HelveticaButton
         android:id="@+id/right_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="info"
-        android:paddingTop="5dp"
         android:paddingRight="10dp"
         android:visibility="gone"
+        android:layout_centerVertical="true"
         android:textSize="@dimen/label_text_size"
         android:layout_alignParentRight="true"/>
 </RelativeLayout>
