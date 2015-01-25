@@ -4,6 +4,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.TabActivity;
+import com.yjh.qinyuan.widget.MyActionBar;
 
 public class AroundMeActivity extends TabActivity {
 
@@ -18,6 +19,7 @@ public class AroundMeActivity extends TabActivity {
     @Override
     public void init() {
         super.init();
+        setMyActionBar((MyActionBar) findViewById(R.id.action_bar));
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         AroundMeFragment fragment = new AroundMeFragment();
         transaction.replace(R.id.content, fragment);

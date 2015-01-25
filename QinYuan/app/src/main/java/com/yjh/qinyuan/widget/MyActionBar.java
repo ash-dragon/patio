@@ -51,6 +51,12 @@ public class MyActionBar extends RelativeLayout {
         mTitleText.setText(resId);
     }
 
+    public void setTitle(String title) {
+        mTitleText.setVisibility(VISIBLE);
+        mTitleText.setText(title);
+    }
+
+
     public void setRightButton(int resId, OnClickListener listener) {
         mRightButton.setVisibility(VISIBLE);
         mRightButton.setText(resId);

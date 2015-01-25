@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.TabActivity;
 import com.yjh.qinyuan.main.userinfo.UserInfoFragment;
+import com.yjh.qinyuan.widget.MyActionBar;
 
 public class SectionActivity extends TabActivity {
 
@@ -20,6 +21,7 @@ public class SectionActivity extends TabActivity {
     @Override
     public void init() {
         super.init();
+        setMyActionBar((MyActionBar) findViewById(R.id.action_bar));
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         SiteListFragment fragment = new SiteListFragment();
         transaction.replace(R.id.content, fragment);
@@ -29,6 +31,5 @@ public class SectionActivity extends TabActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
     }
 }

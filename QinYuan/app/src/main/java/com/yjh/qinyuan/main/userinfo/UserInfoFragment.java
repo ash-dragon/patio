@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.baidu.mapapi.SDKInitializer;
 import com.yjh.qinyuan.LoginActivity;
 import com.yjh.qinyuan.MyApplication;
 import com.yjh.qinyuan.R;
@@ -20,37 +19,38 @@ import com.yjh.qinyuan.widget.HelveticaTextView;
 
 public class UserInfoFragment extends BaseFragment {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    private UserData mUserData;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_user_info, container, false);
-        view.setClickable(true);
-        init(view);
+        if (mRootView == null) {
+            mRootView = inflater.inflate(R.layout.fragment_user_info, container, false);
+            mRootView.setClickable(true);
+            init();
+        }
 
-        return view;
+        getActionBar().setTitle(R.string.user_info);
+
+        return mRootView;
     }
 
     @Override
-    public void init(View rootView) {
-        HelveticaTextView usernameText = (HelveticaTextView) rootView.findViewById(R.id.username);
-        HelveticaTextView nameText = (HelveticaTextView) rootView.findViewById(R.id.name);
-        HelveticaTextView phone1Text = (HelveticaTextView) rootView.findViewById(R.id.phone1);
-        HelveticaTextView phone2Text = (HelveticaTextView) rootView.findViewById(R.id.phone2);
-        HelveticaTextView categoryText = (HelveticaTextView) rootView.findViewById(R.id.category);
+    public void init() {
+        HelveticaTextView usernameText = (HelveticaTextView) mRootView.findViewById(R.id.username);
+        HelveticaTextView nameText = (HelveticaTextView) mRootView.findViewById(R.id.name);
+        HelveticaTextView phone1Text = (HelveticaTextView) mRootView.findViewById(R.id.phone1);
+        HelveticaTextView phone2Text = (HelveticaTextView) mRootView.findViewById(R.id.phone2);
+        HelveticaTextView categoryText = (HelveticaTextView) mRootView.findViewById(R.id.category);
 
-        UserData userData = UserInfoModel.listAll(UserInfoModel.class).get(0).getUserData();
-        usernameText.setText(userData.getUsername());
-        nameText.setText(userData.getName());
-        phone1Text.setText(userData.getPhone1());
-        phone2Text.setText(userData.getPhone2());
-        categoryText.setText(MyApplication.getUserTypeRes(userData.getUserType()));
+        mUserData = UserInfoModel.listAll(UserInfoModel.class).get(0).getUserData();
+        usernameText.setText(mUserData.getUsername());
+        nameText.setText(mUserData.getName());
+        phone1Text.setText(mUserData.getPhone1());
+        phone2Text.setText(mUserData.getPhone2());
+        categoryText.setText(MyApplication.getUserTypeRes(mUserData.getUserType()));
 
-        rootView.findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
+        mRootView.findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logoutTask();

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.TabActivity;
+import com.yjh.qinyuan.widget.MyActionBar;
 
 public class UserInfoActivity extends TabActivity {
 
@@ -19,6 +20,7 @@ public class UserInfoActivity extends TabActivity {
     @Override
     public void init() {
         super.init();
+        setMyActionBar((MyActionBar) findViewById(R.id.action_bar));
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         UserInfoFragment fragment = new UserInfoFragment();
         transaction.replace(R.id.content, fragment);

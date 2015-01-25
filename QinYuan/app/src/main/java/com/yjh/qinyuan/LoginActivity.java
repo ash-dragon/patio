@@ -19,6 +19,7 @@ import com.yjh.qinyuan.task.RequestCallBack;
 import com.yjh.qinyuan.util.HttpUtils;
 import com.yjh.qinyuan.widget.HelveticaButton;
 import com.yjh.qinyuan.widget.HelveticaEditText;
+import com.yjh.qinyuan.widget.MyActionBar;
 
 
 public class LoginActivity extends BaseActivity {
@@ -40,6 +41,8 @@ public class LoginActivity extends BaseActivity {
         mUsernameText = (HelveticaEditText) findViewById(R.id.username);
         mPasswordText = (HelveticaEditText) findViewById(R.id.password);
         mLoginButton = (HelveticaButton) findViewById(R.id.login);
+
+        ((MyActionBar) findViewById(R.id.action_bar)).setTitle(R.string.login);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override

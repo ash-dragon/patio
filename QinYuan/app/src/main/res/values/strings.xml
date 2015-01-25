@@ -64,4 +64,8 @@
     <string name="category2">二级类别：</string>
     <string name="remark">备注：</string>
 
+    // test
+    <string name="info">Info</string>
+    <string name="refresh">Refresh</string>
+
 </resources>

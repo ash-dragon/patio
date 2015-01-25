@@ -15,6 +15,7 @@ import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.BaseFragment;
 import com.yjh.qinyuan.gson.Site;
 import com.yjh.qinyuan.gson.SiteModel;
+import com.yjh.qinyuan.main.MainActivity;
 import com.yjh.qinyuan.task.GetSiteListTask;
 import com.yjh.qinyuan.task.RequestCallBack;
 import com.yjh.qinyuan.util.Constants;
@@ -31,21 +32,22 @@ public class SiteListFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_site_list, container, false);
-        view.setClickable(true);
-        init(view);
 
-        return view;
+        if (mRootView == null) {
+            mRootView = inflater.inflate(R.layout.fragment_site_list, container, false);
+            mRootView.setClickable(true);
+            init();
+        }
+
+        getActionBar().setTitle(R.string.section);
+        getActionBar().hideRightButton();
+
+        return mRootView;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void init(View rootView) {
-        mListView = (ListView) rootView.findViewById(R.id.list_view);
+    public void init() {
+        mListView = (ListView) mRootView.findViewById(R.id.list_view);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -56,12 +58,13 @@ public class SiteListFragment extends BaseFragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.add(R.id.content, fragment);
+                fragmentTransaction.replace(R.id.content, fragment);
                 fragmentTransaction.commit();
             }
         });
 
-        getSitesTask(rootView);
+
+        getSitesTask(mRootView);
 
     }
 

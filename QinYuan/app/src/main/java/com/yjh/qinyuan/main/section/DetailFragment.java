@@ -33,6 +33,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.BaseFragment;
 import com.yjh.qinyuan.gson.TownBranch;
+import com.yjh.qinyuan.main.MainActivity;
 import com.yjh.qinyuan.util.Constants;
 import com.yjh.qinyuan.util.Utils;
 import com.yjh.qinyuan.widget.HelveticaTextView;
@@ -52,45 +53,52 @@ public class DetailFragment extends BaseFragment {
     private MapView mMapView;
     private BaiduMap mMap;
     private ImageLoader mImageLoader;
+    private TownBranch mBranch;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_detail, container, false);
-        view.setClickable(true);
-        init(view);
 
-        return view;
+        if (mRootView == null) {
+            mRootView = inflater.inflate(R.layout.fragment_detail, container, false);
+            mRootView.setClickable(true);
+            init();
+        }
+
+        getActionBar().setTitle(mBranch.getnName());
+        getActionBar().hideRightButton();
+
+        return mRootView;
     }
 
 
     @Override
-    public void init(View rootView) {
-        mScrollView = (ScrollView) rootView.findViewById(R.id.scroll_view);
-        mTitleTextView = (HelveticaTextView) rootView.findViewById(R.id.n_name);
-        mPhone1TextView = (HelveticaTextView) rootView.findViewById(R.id.phone1);
-        mPhone2TextView = (HelveticaTextView) rootView.findViewById(R.id.phone2);
-        mNameTextView = (HelveticaTextView) rootView.findViewById(R.id.contact);
-        mAddressTextView = (HelveticaTextView) rootView.findViewById(R.id.address);
-        mCategory1TextView = (HelveticaTextView) rootView.findViewById(R.id.category1);
-        mCategory2TextView = (HelveticaTextView) rootView.findViewById(R.id.category2);
+    public void init() {
+        mBranch = (TownBranch) getArguments().getSerializable(Constants.MODEL_TOWN_BRANCH);
+        mScrollView = (ScrollView) mRootView.findViewById(R.id.scroll_view);
+        mTitleTextView = (HelveticaTextView) mRootView.findViewById(R.id.n_name);
+        mPhone1TextView = (HelveticaTextView) mRootView.findViewById(R.id.phone1);
+        mPhone2TextView = (HelveticaTextView) mRootView.findViewById(R.id.phone2);
+        mNameTextView = (HelveticaTextView) mRootView.findViewById(R.id.contact);
+        mAddressTextView = (HelveticaTextView) mRootView.findViewById(R.id.address);
+        mCategory1TextView = (HelveticaTextView) mRootView.findViewById(R.id.category1);
+        mCategory2TextView = (HelveticaTextView) mRootView.findViewById(R.id.category2);
 
-        TownBranch branch = (TownBranch) getArguments().getSerializable(Constants.MODEL_TOWN_BRANCH);
-        mTitleTextView.setText(branch.getnName());
-        mPhone1TextView.setText(branch.getPhone1());
-        mPhone2TextView.setText(branch.getPhone2());
-        mNameTextView.setText(branch.getUsername());
-        mAddressTextView.setText(branch.getAddress());
-        mCategory1TextView.setText(branch.getPtName());
-        mCategory2TextView.setText(branch.getCtName());
+        mTitleTextView.setText(mBranch.getnName());
+        mPhone1TextView.setText(mBranch.getPhone1());
+        mPhone2TextView.setText(mBranch.getPhone2());
+        mNameTextView.setText(mBranch.getUsername());
+        mAddressTextView.setText(mBranch.getAddress());
+        mCategory1TextView.setText(mBranch.getPtName());
+        mCategory2TextView.setText(mBranch.getCtName());
 
         mImageLoader = ImageLoader.getInstance();
         mImageLoader.init(ImageLoaderConfiguration.createDefault(getActivity()));
-        mImageLoader.displayImage(branch.getImage1(),
-                (ImageView) rootView.findViewById(R.id.image), Utils.getImageOptions());
+        mImageLoader.displayImage(mBranch.getImage1(),
+                (ImageView) mRootView.findViewById(R.id.image), Utils.getImageOptions());
 
-        mMapView = (MapView) rootView.findViewById(R.id.map);
+        mMapView = (MapView) mRootView.findViewById(R.id.map);
         mMapView.showZoomControls(false);
         mMapView.showScaleControl(false);
         mMap = mMapView.getMap();
@@ -103,7 +111,7 @@ public class DetailFragment extends BaseFragment {
 //        mLocClient.setLocOption(option);
 //        mLocClient.start();
 
-        LatLng ll = new LatLng(branch.getLatitude(), branch.getLongitude());
+        LatLng ll = new LatLng(mBranch.getLatitude(), mBranch.getLongitude());
         MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
         mMap.animateMapStatus(u);
         BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_marka);

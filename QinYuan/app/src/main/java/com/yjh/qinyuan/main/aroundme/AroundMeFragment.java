@@ -29,6 +29,7 @@ import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.BaseFragment;
 import com.yjh.qinyuan.gson.ShopMarker;
 import com.yjh.qinyuan.gson.ShopMarkerModel;
+import com.yjh.qinyuan.main.MainActivity;
 import com.yjh.qinyuan.main.section.DetailFragment;
 import com.yjh.qinyuan.task.GetMarkerListTask;
 import com.yjh.qinyuan.task.RequestCallBack;
@@ -51,17 +52,29 @@ public class AroundMeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_around_me, container, false);
-        view.setClickable(true);
-        init(view);
 
-        return view;
+        if (mRootView == null) {
+            mRootView = inflater.inflate(R.layout.fragment_around_me, container, false);
+            mRootView.setClickable(true);
+            init();
+        }
+
+        getActionBar().setTitle(R.string.around_me);
+        getActionBar().setRightButton(R.string.refresh, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMapView = null;
+                init();
+            }
+        });
+
+        return mRootView;
     }
 
 
     @Override
-    public void init(View rootView) {
-        mMapView = (MapView) rootView.findViewById(R.id.bmapView);
+    public void init() {
+        mMapView = (MapView) mRootView.findViewById(R.id.bmapView);
         mMapView.showZoomControls(false);
         mMap = mMapView.getMap();
         mMap.setMyLocationEnabled(true);
@@ -112,7 +125,7 @@ public class AroundMeFragment extends BaseFragment {
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.add(R.id.content, fragment);
+                        fragmentTransaction.replace(R.id.content, fragment);
                         fragmentTransaction.commit();
                     }
                 };

@@ -16,6 +16,7 @@ import com.yjh.qinyuan.common.BaseFragment;
 import com.yjh.qinyuan.gson.Agent;
 import com.yjh.qinyuan.gson.TownBranch;
 import com.yjh.qinyuan.gson.TownBranchModel;
+import com.yjh.qinyuan.main.MainActivity;
 import com.yjh.qinyuan.task.GetTownBranchListTask;
 import com.yjh.qinyuan.task.RequestCallBack;
 import com.yjh.qinyuan.util.Constants;
@@ -33,17 +34,35 @@ public class TownBranchListFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_branch_list, container, false);
-        view.setClickable(true);
-        init(view);
+        if (mRootView == null) {
+            mRootView = inflater.inflate(R.layout.fragment_branch_list, container, false);
+            mRootView.setClickable(true);
+            init();
+        }
 
-        return view;
+        getActionBar().setTitle(mAgent.getAgentName());
+        getActionBar().setRightButton(R.string.info, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(Constants.MODEL_AGENT, mAgent);
+                InfoFragment fragment = new InfoFragment();
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+        return mRootView;
     }
 
     @Override
-    public void init(View rootView) {
+    public void init() {
         mAgent = (Agent) getArguments().getSerializable(Constants.MODEL_AGENT);
-        mListView = (ListView) rootView.findViewById(R.id.list_view);
+        mListView = (ListView) mRootView.findViewById(R.id.list_view);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -54,12 +73,13 @@ public class TownBranchListFragment extends BaseFragment {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.add(R.id.content, fragment);
+                fragmentTransaction.replace(R.id.content, fragment);
                 fragmentTransaction.commit();
             }
         });
 
-        getAgentsTask(rootView);
+
+        getAgentsTask(mRootView);
     }
 
     private void getAgentsTask(final View rootView) {

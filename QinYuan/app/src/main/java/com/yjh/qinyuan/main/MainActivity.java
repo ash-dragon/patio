@@ -60,9 +60,4 @@ public class MainActivity extends ActivityGroup {
 
         mTabHost.setCurrentTab(SECTION);
     }
-
-    public MyActionBar getActionView() {
-        return mActionBar;
-    }
-
 }
