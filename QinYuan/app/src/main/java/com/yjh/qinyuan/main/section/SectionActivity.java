@@ -3,6 +3,7 @@ package com.yjh.qinyuan.main.section;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.TabActivity;
 import com.yjh.qinyuan.main.userinfo.UserInfoFragment;
@@ -13,6 +14,7 @@ public class SectionActivity extends TabActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_tabs);
 
         init();

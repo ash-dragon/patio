@@ -2,6 +2,7 @@ package com.yjh.qinyuan.main.section;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -47,13 +48,12 @@ public class DetailFragment extends BaseFragment {
     private HelveticaTextView mAddressTextView;
     private HelveticaTextView mCategory1TextView;
     private HelveticaTextView mCategory2TextView;
-    private ScrollView mScrollView;
 
-    private LocationClient mLocClient;
     private MapView mMapView;
     private BaiduMap mMap;
     private ImageLoader mImageLoader;
     private TownBranch mBranch;
+    private boolean mIsFirstLoc = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,7 +76,6 @@ public class DetailFragment extends BaseFragment {
     @Override
     public void init() {
         mBranch = (TownBranch) getArguments().getSerializable(Constants.MODEL_TOWN_BRANCH);
-        mScrollView = (ScrollView) mRootView.findViewById(R.id.scroll_view);
         mTitleTextView = (HelveticaTextView) mRootView.findViewById(R.id.n_name);
         mPhone1TextView = (HelveticaTextView) mRootView.findViewById(R.id.phone1);
         mPhone2TextView = (HelveticaTextView) mRootView.findViewById(R.id.phone2);
@@ -99,17 +98,16 @@ public class DetailFragment extends BaseFragment {
                 (ImageView) mRootView.findViewById(R.id.image), Utils.getImageOptions());
 
         mMapView = (MapView) mRootView.findViewById(R.id.map);
+        mMapView.setClickable(false);
+        mMapView.setEnabled(false);
         mMapView.showZoomControls(false);
         mMapView.showScaleControl(false);
         mMap = mMapView.getMap();
         mMap.setTrafficEnabled(true);
-//        mLocClient = new LocationClient(getActivity().getApplicationContext());
-//        LocationClientOption option = new LocationClientOption();
-//        option.setOpenGps(true);
-//        option.setCoorType("bd09ll");
-//        option.setScanSpan(1000);
-//        mLocClient.setLocOption(option);
-//        mLocClient.start();
+        LocationClientOption option = new LocationClientOption();
+        option.setOpenGps(true);
+        option.setCoorType("bd09ll");
+        option.setScanSpan(1000);
 
         LatLng ll = new LatLng(mBranch.getLatitude(), mBranch.getLongitude());
         MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
@@ -117,18 +115,27 @@ public class DetailFragment extends BaseFragment {
         BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_marka);
         OverlayOptions overlayOptions = new MarkerOptions().position(ll).icon(bitmap);
         mMap.addOverlay(overlayOptions);
-//
-        mMapView.setOnTouchListener(new View.OnTouchListener() {
+    }
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_UP){
-                    mScrollView.requestDisallowInterceptTouchEvent(false);
-                }else{
-                    mScrollView.requestDisallowInterceptTouchEvent(true);
-                }
-                return false;
-            }
-        });
+    @Override
+    public void onDestroy() {
+        mMap.setMyLocationEnabled(false);
+        mMapView.onDestroy();
+        mMapView = null;
+        super.onDestroy();
+    }
+
+    @Override
+    public void onResume() {
+        mMapView.onResume();
+//        mMapView.setVisibility(View.VISIBLE);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        mMapView.onPause();
+//        mMapView.setVisibility(View.GONE);
+        super.onPause();
     }
 }

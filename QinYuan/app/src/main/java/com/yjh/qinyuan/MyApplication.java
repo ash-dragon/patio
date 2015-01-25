@@ -17,7 +17,6 @@ public class MyApplication extends SugarApp {
     @Override
     public void onCreate() {
         super.onCreate();
-        SDKInitializer.initialize(this);
     }
 
     public static int getUserTypeRes(int type) {

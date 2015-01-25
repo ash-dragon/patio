@@ -121,7 +121,7 @@ public class AroundMeFragment extends BaseFragment {
 //                        LatLng ll = marker.getPosition();
 //                        LatLng llNew = new LatLng(ll.latitude + 0.005, ll.longitude + 0.005);
 //                        marker.setPosition(llNew);
-//                        mMap.hideInfoWindow();
+                        mMap.hideInfoWindow();
                         Bundle bundle = new Bundle();
                         bundle.putSerializable(Constants.MODEL_TOWN_BRANCH, mSelectedShopMarker);
                         DetailFragment fragment = new DetailFragment();
