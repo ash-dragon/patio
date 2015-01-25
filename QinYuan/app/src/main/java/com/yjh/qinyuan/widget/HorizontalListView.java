@@ -24,7 +24,7 @@
  * It has been substantially rewritten and added to from the original version.
  */
 // @formatter:on
-package com.yjh.qinyuan.widget.widget;
+package com.yjh.qinyuan.widget;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

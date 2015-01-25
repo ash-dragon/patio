@@ -4,7 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-import com.yjh.qinyuan.widget.widget.LoadingProgress;
+import com.yjh.qinyuan.widget.LoadingProgress;
 
 public abstract class BaseActivity extends ActionBarActivity {
 

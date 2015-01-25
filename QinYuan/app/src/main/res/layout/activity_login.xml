@@ -9,12 +9,12 @@
     android:background="@color/background"
     tools:context="com.yjh.qinyuan.LoginActivity">
 
-    <com.yjh.qinyuan.widget.widget.MyActionBar
+    <com.yjh.qinyuan.widget.MyActionBar
         android:id="@+id/action_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         android:id="@+id/title"
         android:textSize="@dimen/login_text_size"
         android:layout_below="@+id/action_bar"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.yjh.qinyuan.widget.widget.HelveticaEditText
+    <com.yjh.qinyuan.widget.HelveticaEditText
         android:id="@+id/username"
         android:layout_below="@id/title"
         android:layout_marginTop="5dp"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/username"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaEditText
+    <com.yjh.qinyuan.widget.HelveticaEditText
         android:id="@+id/password"
         android:layout_below="@+id/username"
         android:textSize="@dimen/login_text_size"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/password"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaButton
+    <com.yjh.qinyuan.widget.HelveticaButton
         android:id="@+id/login"
         android:textSize="@dimen/login_text_size"
         android:layout_width="match_parent"

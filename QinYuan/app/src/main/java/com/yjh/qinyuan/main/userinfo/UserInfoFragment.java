@@ -15,7 +15,7 @@ import com.yjh.qinyuan.gson.UserData;
 import com.yjh.qinyuan.gson.UserInfoModel;
 import com.yjh.qinyuan.task.LogoutTask;
 import com.yjh.qinyuan.task.RequestCallBack;
-import com.yjh.qinyuan.widget.widget.HelveticaTextView;
+import com.yjh.qinyuan.widget.HelveticaTextView;
 
 public class UserInfoFragment extends BaseFragment {
 

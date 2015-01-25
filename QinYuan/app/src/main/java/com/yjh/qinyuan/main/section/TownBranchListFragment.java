@@ -1,6 +1,8 @@
 package com.yjh.qinyuan.main.section;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +14,8 @@ import android.widget.ListView;
 import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.BaseFragment;
 import com.yjh.qinyuan.gson.Agent;
-import com.yjh.qinyuan.gson.AgentModel;
 import com.yjh.qinyuan.gson.TownBranch;
 import com.yjh.qinyuan.gson.TownBranchModel;
-import com.yjh.qinyuan.task.GetAgentListTask;
 import com.yjh.qinyuan.task.GetTownBranchListTask;
 import com.yjh.qinyuan.task.RequestCallBack;
 import com.yjh.qinyuan.util.Constants;
@@ -26,7 +26,8 @@ import java.util.ArrayList;
 public class TownBranchListFragment extends BaseFragment {
 
     private ListView mListView;
-    private ArrayList<TownBranch> mTownBranch;
+    private ArrayList<TownBranch> mTownBranches;
+    private Agent mAgent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,18 +43,20 @@ public class TownBranchListFragment extends BaseFragment {
 
     @Override
     public void init(View rootView) {
+        mAgent = (Agent) getArguments().getSerializable(Constants.MODEL_AGENT);
         mListView = (ListView) rootView.findViewById(R.id.list_view);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Bundle bundle = new Bundle();
-//                bundle.putString(Constants.CID, mSites.get(position).getStringCid());
-//                AgentListFragment fragment = new AgentListFragment();
-//                fragment.setArguments(bundle);
-//                FragmentManager fragmentManager = getFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.content, fragment);
-//                fragmentTransaction.commit();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(Constants.MODEL_TOWN_BRANCH, mTownBranches.get(position));
+                DetailFragment fragment = new DetailFragment();
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.add(R.id.content, fragment);
+                fragmentTransaction.commit();
             }
         });
 
@@ -61,16 +64,15 @@ public class TownBranchListFragment extends BaseFragment {
     }
 
     private void getAgentsTask(final View rootView) {
-        String agentId = getArguments().getString(Constants.AID);
         GetTownBranchListTask task = new GetTownBranchListTask(getActivity(),
-                agentId, new RequestCallBack(getActivity(), mProgressBar) {
+                mAgent.getAgentId(), new RequestCallBack(getActivity(), mProgressBar) {
             @Override
             public void onSuccess(String s) {
                 super.onSuccess(s);
-                mTownBranch = HttpUtils.getJsonData(s, TownBranchModel.class).getTownBranches();
+                mTownBranches = HttpUtils.getJsonData(s, TownBranchModel.class).getTownBranches();
                 ArrayList<String> names = new ArrayList<>();
 
-                for (TownBranch branch : mTownBranch) {
+                for (TownBranch branch : mTownBranches) {
                     names.add(branch.getnName());
                 }
 

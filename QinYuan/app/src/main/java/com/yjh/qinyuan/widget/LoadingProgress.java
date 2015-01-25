@@ -1,4 +1,4 @@
-package com.yjh.qinyuan.widget.widget;
+package com.yjh.qinyuan.widget;
 
 import android.app.ProgressDialog;
 import android.content.Context;

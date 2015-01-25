@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,90 +25,82 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:background="@drawable/ic_launcher" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                    <com.yjh.qinyuan.widget.HelveticaTextView
                         android:id="@+id/n_name"
-                        android:text="guomeida"
-                        android:textSize="@dimen/label_text_size"
-                        style="@style/label_text" />
-                    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                        style="@style/detail_text" />
+                    <com.yjh.qinyuan.widget.HelveticaTextView
                         android:id="@+id/label_phone1"
                         android:text="@string/phone1"
                         android:layout_below="@+id/n_name"
-                        style="@style/label_text" />
-                    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                        style="@style/detail_text" />
+                    <com.yjh.qinyuan.widget.HelveticaTextView
                         android:id="@+id/phone1"
-                        android:text="1231111111"
                         android:layout_below="@+id/n_name"
                         android:layout_toRightOf="@id/label_phone1"
-                        style="@style/label_text" />
-                    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                        style="@style/detail_text" />
+                    <com.yjh.qinyuan.widget.HelveticaTextView
                         android:id="@+id/label_phone2"
                         android:text="@string/phone2"
                         android:layout_below="@+id/label_phone1"
-                        style="@style/label_text" />
-                    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                        style="@style/detail_text" />
+                    <com.yjh.qinyuan.widget.HelveticaTextView
                         android:id="@+id/phone2"
-                        android:text="123"
                         android:layout_below="@+id/label_phone1"
                         android:layout_toRightOf="@id/label_phone1"
-                        style="@style/label_text" />
+                        style="@style/detail_text" />
                 </RelativeLayout>
             </LinearLayout>
 
-            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+            <com.yjh.qinyuan.widget.HelveticaTextView
                 android:id="@+id/label_contact"
                 android:text="@string/contact"
                 android:layout_below="@+id/simple_item"
-                style="@style/label_text" />
-            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                style="@style/detail_text" />
+            <com.yjh.qinyuan.widget.HelveticaTextView
                 android:id="@+id/contact"
-                android:text="123"
                 android:layout_below="@+id/simple_item"
                 android:layout_toRightOf="@id/label_contact"
-                style="@style/label_text" />
+                style="@style/detail_text" />
 
-            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+            <com.yjh.qinyuan.widget.HelveticaTextView
                 android:id="@+id/label_address"
                 android:text="@string/address"
                 android:layout_below="@+id/label_contact"
-                style="@style/label_text" />
-            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                style="@style/detail_text" />
+            <com.yjh.qinyuan.widget.HelveticaTextView
                 android:id="@+id/address"
-                android:text="123"
                 android:layout_below="@+id/label_contact"
                 android:layout_toRightOf="@id/label_address"
-                style="@style/label_text" />
+                style="@style/detail_text" />
 
-            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+            <com.yjh.qinyuan.widget.HelveticaTextView
                 android:id="@+id/label_category1"
                 android:text="@string/category1"
                 android:layout_below="@+id/address"
-                style="@style/label_text" />
-            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+                style="@style/detail_text" />
+            <com.yjh.qinyuan.widget.HelveticaTextView
                 android:id="@+id/category1"
-                android:text="123"
                 android:layout_below="@+id/label_address"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
                 android:layout_toRightOf="@id/label_category1"
-                style="@style/label_text" />
+                style="@style/detail_text" />
 
-            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+            <com.yjh.qinyuan.widget.HelveticaTextView
                 android:id="@+id/label_category2"
                 android:text="@string/category2"
                 android:layout_below="@+id/label_category1"
                 style="@style/label_text" />
-            <com.yjh.qinyuan.widget.widget.HelveticaTextView
+            <com.yjh.qinyuan.widget.HelveticaTextView
                 android:id="@+id/category2"
-                android:text="123"
                 android:layout_below="@+id/label_category1"
                 android:layout_alignParentRight="true"
                 android:gravity="right"

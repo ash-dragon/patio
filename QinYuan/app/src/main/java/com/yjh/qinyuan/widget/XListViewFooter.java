@@ -4,7 +4,7 @@
  * @author Maxwin
  * @description XListView's footer
  */
-package com.yjh.qinyuan.widget.widget;
+package com.yjh.qinyuan.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -24,7 +24,7 @@ public class XListViewFooter extends LinearLayout {
 
 	private View mContentView;
 	private View mProgressBar;
-	private TextView mHintView;
+	private HelveticaTextView mHintView;
 
 	public XListViewFooter(Context context) {
 		super(context);
@@ -117,7 +117,7 @@ public class XListViewFooter extends LinearLayout {
 
 		mContentView = moreView.findViewById(R.id.xlistview_footer_content);
 		mProgressBar = moreView.findViewById(R.id.xlistview_footer_progressbar);
-		mHintView = (TextView) moreView
+		mHintView = (HelveticaTextView) moreView
 				.findViewById(R.id.xlistview_footer_hint_textview);
 	}
 

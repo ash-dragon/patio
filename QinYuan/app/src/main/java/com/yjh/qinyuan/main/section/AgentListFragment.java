@@ -14,6 +14,7 @@ import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.BaseFragment;
 import com.yjh.qinyuan.gson.Agent;
 import com.yjh.qinyuan.gson.AgentModel;
+import com.yjh.qinyuan.gson.Site;
 import com.yjh.qinyuan.task.GetAgentListTask;
 import com.yjh.qinyuan.task.RequestCallBack;
 import com.yjh.qinyuan.util.Constants;
@@ -25,6 +26,7 @@ public class AgentListFragment extends BaseFragment {
 
     private ListView mListView;
     private ArrayList<Agent> mAgents;
+    private Site mSite;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,12 +42,13 @@ public class AgentListFragment extends BaseFragment {
 
     @Override
     public void init(View rootView) {
+        mSite = (Site) getArguments().getSerializable(Constants.MODEL_SITE);
         mListView = (ListView) rootView.findViewById(R.id.list_view);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-                bundle.putString(Constants.AID, mAgents.get(position).getAgentId());
+                bundle.putSerializable(Constants.MODEL_AGENT, mAgents.get(position));
                 TownBranchListFragment fragment = new TownBranchListFragment();
                 fragment.setArguments(bundle);
                 FragmentManager fragmentManager = getFragmentManager();
@@ -60,9 +63,8 @@ public class AgentListFragment extends BaseFragment {
     }
 
     private void getTownBranchFragment(final View rootView) {
-        String siteId = getArguments().getString(Constants.CID);
         GetAgentListTask task = new GetAgentListTask(getActivity(),
-                siteId, new RequestCallBack(getActivity(), mProgressBar) {
+                mSite.getCid(), new RequestCallBack(getActivity(), mProgressBar) {
             @Override
             public void onSuccess(String s) {
                 super.onSuccess(s);

@@ -9,65 +9,65 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.yjh.qinyuan.main.userinfo.UserInfoFragment">
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/label_username"
         android:text="@string/info_username"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/username"
         android:layout_toRightOf="@+id/label_username"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/label_name"
         android:layout_below="@+id/label_username"
         android:text="@string/info_name"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/name"
         android:layout_below="@+id/label_username"
         android:layout_toRightOf="@+id/label_name"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/label_phone1"
         android:layout_below="@+id/label_name"
         android:text="@string/info_phone1"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/phone1"
         android:layout_below="@+id/label_name"
         android:layout_toRightOf="@+id/label_phone1"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/label_phone2"
         android:layout_below="@+id/label_phone1"
         android:text="@string/info_phone2"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/phone2"
         android:layout_below="@+id/label_phone1"
         android:layout_toRightOf="@+id/label_phone2"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/label_category"
         android:layout_below="@+id/label_phone2"
         android:text="@string/info_category"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/category"
         android:layout_below="@+id/label_phone2"
         android:layout_toRightOf="@+id/label_category"/>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaButton
+    <com.yjh.qinyuan.widget.HelveticaButton
         android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

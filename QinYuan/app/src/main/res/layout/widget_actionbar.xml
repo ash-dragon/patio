@@ -3,11 +3,23 @@
     android:layout_height="wrap_content"
     android:background="@color/white">
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test"
         android:paddingTop="5dp"
+        android:visibility="gone"
         android:textSize="@dimen/label_text_size"
         android:layout_centerHorizontal="true"/>
+
+    <com.yjh.qinyuan.widget.HelveticaButton
+        android:id="@+id/right_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="info"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:visibility="gone"
+        android:textSize="@dimen/label_text_size"
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>

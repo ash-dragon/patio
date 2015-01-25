@@ -9,7 +9,7 @@ import com.yjh.qinyuan.LoginActivity;
 import com.yjh.qinyuan.MyApplication;
 import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.gson.UserInfoModel;
-import com.yjh.qinyuan.widget.widget.LoadingProgress;
+import com.yjh.qinyuan.widget.LoadingProgress;
 import net.tsz.afinal.http.AjaxCallBack;
 import org.json.JSONException;
 import org.json.JSONObject;

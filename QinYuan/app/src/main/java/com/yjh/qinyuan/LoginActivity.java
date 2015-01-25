@@ -17,8 +17,8 @@ import com.yjh.qinyuan.main.MainActivity;
 import com.yjh.qinyuan.task.LoginTask;
 import com.yjh.qinyuan.task.RequestCallBack;
 import com.yjh.qinyuan.util.HttpUtils;
-import com.yjh.qinyuan.widget.widget.HelveticaButton;
-import com.yjh.qinyuan.widget.widget.HelveticaEditText;
+import com.yjh.qinyuan.widget.HelveticaButton;
+import com.yjh.qinyuan.widget.HelveticaEditText;
 
 
 public class LoginActivity extends BaseActivity {

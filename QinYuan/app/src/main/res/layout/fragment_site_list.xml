@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
     </ListView>
 
-    <com.yjh.qinyuan.widget.widget.HelveticaTextView
+    <com.yjh.qinyuan.widget.HelveticaTextView
         android:id="@+id/no_data_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

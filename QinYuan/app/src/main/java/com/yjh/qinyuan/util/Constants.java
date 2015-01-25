@@ -17,5 +17,8 @@ public class Constants {
     public static final String KEY = "key";
     public static final String CID = "CID";
     public static final String AID = "AID";
+    public static final String MODEL_SITE = "model_site";
+    public static final String MODEL_AGENT = "model_agent";
+    public static final String MODEL_TOWN_BRANCH = "model_town_branch";
 
 }

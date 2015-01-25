@@ -25,4 +25,10 @@ public class SectionActivity extends TabActivity {
         transaction.replace(R.id.content, fragment);
         transaction.commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
 }

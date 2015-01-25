@@ -39,13 +39,18 @@ public class SiteListFragment extends BaseFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public void init(View rootView) {
         mListView = (ListView) rootView.findViewById(R.id.list_view);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-                bundle.putString(Constants.CID, mSites.get(position).getCid());
+                bundle.putSerializable(Constants.MODEL_SITE, mSites.get(position));
                 AgentListFragment fragment = new AgentListFragment();
                 fragment.setArguments(bundle);
                 FragmentManager fragmentManager = getFragmentManager();

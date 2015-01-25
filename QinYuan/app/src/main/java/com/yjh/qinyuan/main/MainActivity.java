@@ -11,7 +11,7 @@ import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.main.aroundme.AroundMeActivity;
 import com.yjh.qinyuan.main.section.SectionActivity;
 import com.yjh.qinyuan.main.userinfo.UserInfoActivity;
-import com.yjh.qinyuan.widget.widget.MyActionBar;
+import com.yjh.qinyuan.widget.MyActionBar;
 
 public class MainActivity extends ActivityGroup {
 
