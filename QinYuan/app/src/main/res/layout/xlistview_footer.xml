@@ -16,7 +16,7 @@
             android:layout_centerInParent="true"
             android:visibility="invisible" />
 
-        <com.kiteim.android.widget.HelveticaTextView
+        <TextView
             android:id="@+id/xlistview_footer_hint_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

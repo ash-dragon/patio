@@ -15,65 +15,118 @@
         android:text="@string/info_username"/>
 
     <com.yjh.qinyuan.widget.HelveticaTextView
-        style="@style/label_text"
+        style="@style/value_text"
         android:id="@+id/username"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
         android:layout_toRightOf="@+id/label_username"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        android:layout_below="@+id/label_username"/>
 
     <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/label_name"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/label_username"
         android:text="@string/info_name"/>
 
     <com.yjh.qinyuan.widget.HelveticaTextView
-        style="@style/label_text"
+        style="@style/value_text"
         android:id="@+id/name"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
         android:layout_below="@+id/label_username"
         android:layout_toRightOf="@+id/label_name"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        android:layout_below="@+id/label_name"/>
 
     <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/label_phone1"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/label_name"
         android:text="@string/info_phone1"/>
 
     <com.yjh.qinyuan.widget.HelveticaTextView
-        style="@style/label_text"
+        style="@style/value_text"
         android:id="@+id/phone1"
         android:autoLink="phone"
+        android:textColorLink="@color/main"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/label_name"
         android:layout_toRightOf="@+id/label_phone1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        android:layout_below="@+id/label_phone1"/>
 
     <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/label_phone2"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/label_phone1"
         android:text="@string/info_phone2"/>
 
     <com.yjh.qinyuan.widget.HelveticaTextView
-        style="@style/label_text"
+        style="@style/value_text"
         android:id="@+id/phone2"
         android:autoLink="phone"
+        android:textColorLink="@color/main"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/label_phone1"
         android:layout_toRightOf="@+id/label_phone2"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        android:layout_below="@+id/label_phone2"/>
 
     <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/label_text"
         android:id="@+id/label_category"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/label_phone2"
         android:text="@string/info_category"/>
 
     <com.yjh.qinyuan.widget.HelveticaTextView
-        style="@style/label_text"
+        style="@style/value_text"
         android:id="@+id/category"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
         android:layout_below="@+id/label_phone2"
         android:layout_toRightOf="@+id/label_category"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        android:layout_below="@+id/label_category"/>
 
     <com.yjh.qinyuan.widget.HelveticaButton
         android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:text="@string/info_logout"
+        android:background="@drawable/btn_quit"
+        android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:textSize="@dimen/login_text_size"/>
 </RelativeLayout>

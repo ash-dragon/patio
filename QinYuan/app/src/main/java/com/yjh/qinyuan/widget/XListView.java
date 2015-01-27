@@ -41,7 +41,7 @@ public class XListView extends ListView implements OnScrollListener {
 	// header view content, use it to calculate the Header's height. And hide it
 	// when disable pull refresh.
 	private RelativeLayout mHeaderViewContent;
-	private HelveticaTextView mHeaderTimeView;
+	private TextView mHeaderTimeView;
 	private int mHeaderViewHeight; // header view's height
 	private boolean mEnablePullRefresh = true;
 	private boolean mPullRefreshing = false; // is refreashing.
@@ -102,7 +102,7 @@ public class XListView extends ListView implements OnScrollListener {
 		// init header view
 		mHeaderView = new XListViewHeader(context);
 		mHeaderViewContent = (RelativeLayout) mHeaderView.findViewById(R.id.xlistview_header_content);
-		mHeaderTimeView = (HelveticaTextView) mHeaderView.findViewById(R.id.xlistview_header_time);
+		mHeaderTimeView = (TextView) mHeaderView.findViewById(R.id.xlistview_header_time);
 		addHeaderView(mHeaderView);
 
 		// init footer view
@@ -124,7 +124,7 @@ public class XListView extends ListView implements OnScrollListener {
 		// make sure XListViewFooter is the last footer view, and only add once.
 		if (mIsFooterReady == false) {
 			mIsFooterReady = true;
-			addFooterView(mFooterView);
+//			addFooterView(mFooterView);
 		}
 		super.setAdapter(adapter);
 	}
@@ -386,7 +386,7 @@ public class XListView extends ListView implements OnScrollListener {
     public void completeLoad() {
         stopLoadMore();
         stopRefresh();
-        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy, hh:mmaa");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
         Date curDate = new Date(System.currentTimeMillis());
         String str = format.format(curDate);
         setRefreshTime(str);

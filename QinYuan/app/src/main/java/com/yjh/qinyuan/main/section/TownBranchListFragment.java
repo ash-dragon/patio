@@ -3,20 +3,23 @@ package com.yjh.qinyuan.main.section;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.BaseFragment;
 import com.yjh.qinyuan.gson.Agent;
 import com.yjh.qinyuan.gson.TownBranch;
 import com.yjh.qinyuan.gson.TownBranchModel;
-import com.yjh.qinyuan.main.MainActivity;
+import com.yjh.qinyuan.main.DetailActivity;
 import com.yjh.qinyuan.task.GetTownBranchListTask;
 import com.yjh.qinyuan.task.RequestCallBack;
 import com.yjh.qinyuan.util.Constants;
@@ -41,7 +44,7 @@ public class TownBranchListFragment extends BaseFragment {
         }
 
         getActionBar().setTitle(mAgent.getAgentName());
-        getActionBar().setRightButton(R.string.info, new View.OnClickListener() {
+        getActionBar().setRightButton(R.drawable.ico_info_normal, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
@@ -66,15 +69,18 @@ public class TownBranchListFragment extends BaseFragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(Constants.MODEL_TOWN_BRANCH, mTownBranches.get(position));
-                DetailFragment fragment = new DetailFragment();
-                fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.replace(R.id.content, fragment);
-                fragmentTransaction.commit();
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable(Constants.MODEL_TOWN_BRANCH, mTownBranches.get(position));
+//                DetailFragment fragment = new DetailFragment();
+//                fragment.setArguments(bundle);
+//                FragmentManager fragmentManager = getFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.replace(R.id.content, fragment);
+//                fragmentTransaction.commit();
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra(Constants.MODEL_TOWN_BRANCH, mTownBranches.get(position));
+                startActivity(intent);
             }
         });
 
@@ -97,13 +103,52 @@ public class TownBranchListFragment extends BaseFragment {
 
                 if (names.size() > 0) {
                     rootView.findViewById(R.id.no_data_text).setVisibility(View.GONE);
-                    mListView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                            android.R.layout.simple_list_item_1, names));
+//                    mListView.setAdapter(new ArrayAdapter<String>(getActivity(),
+//                            android.R.layout.simple_list_item_1, names));
+                    mListView.setAdapter(new ListAdapter());
                 } else {
                     rootView.findViewById(R.id.no_data_text).setVisibility(View.VISIBLE);
                 }
             }
         });
         task.executeGet();
+    }
+
+    private class ListAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return mTownBranches == null ? 0 : mTownBranches.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return position;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            TownBranch branch = mTownBranches.get(position);
+            convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_layout, null);
+            TextView textView = (TextView) convertView.findViewById(R.id.text);
+            textView.setText(branch.getnName());
+
+            if (branch.getPtId() == 1000) {
+                convertView.setBackgroundColor(getActivity().getResources().getColor(R.color.light_green));
+            } else if (branch.getPtId() == 1002) {
+                convertView.setBackgroundColor(getActivity().getResources().getColor(R.color.light_purple));
+
+            } else {
+                convertView.setBackgroundColor(getActivity().getResources().getColor(R.color.light_red));
+            }
+
+            return convertView;
+        }
     }
 }

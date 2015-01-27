@@ -7,5 +7,12 @@
     <color name="transparent">#00000000</color>
     <color name="red">#ffff0000</color>
     <color name="back">#ffff0000</color>
-    <color name="background">#ececef</color>
+    <color name="background">#ffffff</color>
+    <color name="divider">#ececef</color>
+    <color name="main">#0089cf</color>
+
+    <color name="light_green">#e7fcf3</color>
+    <color name="light_red">#ffdbd7</color>
+    <color name="light_purple">#f2e3fd</color>
+
 </resources>

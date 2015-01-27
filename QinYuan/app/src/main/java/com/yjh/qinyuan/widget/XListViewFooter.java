@@ -24,7 +24,7 @@ public class XListViewFooter extends LinearLayout {
 
 	private View mContentView;
 	private View mProgressBar;
-	private HelveticaTextView mHintView;
+	private TextView mHintView;
 
 	public XListViewFooter(Context context) {
 		super(context);
@@ -117,7 +117,7 @@ public class XListViewFooter extends LinearLayout {
 
 		mContentView = moreView.findViewById(R.id.xlistview_footer_content);
 		mProgressBar = moreView.findViewById(R.id.xlistview_footer_progressbar);
-		mHintView = (HelveticaTextView) moreView
+		mHintView = (TextView) moreView
 				.findViewById(R.id.xlistview_footer_hint_textview);
 	}
 

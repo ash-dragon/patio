@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     tools:context="com.yjh.qinyuan.main.section.SiteListFragment">
 
-    <ListView
+    <com.yjh.qinyuan.widget.XListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </ListView>
+    </com.yjh.qinyuan.widget.XListView>
 
     <com.yjh.qinyuan.widget.HelveticaTextView
         android:id="@+id/no_data_text"

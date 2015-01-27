@@ -17,7 +17,7 @@
             android:gravity="center"
             android:orientation="vertical" >
 
-            <com.kiteim.android.widget.HelveticaTextView
+            <TextView
                 android:id="@+id/xlistview_header_hint_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,13 +28,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp" >
 
-                <com.kiteim.android.widget.HelveticaTextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/xlistview_header_last_time"
                     android:textSize="12sp" />
 
-                <com.kiteim.android.widget.HelveticaTextView
+                <TextView
                     android:id="@+id/xlistview_header_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

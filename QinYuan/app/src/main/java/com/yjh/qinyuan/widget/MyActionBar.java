@@ -13,7 +13,7 @@ import com.yjh.qinyuan.R;
 public class MyActionBar extends RelativeLayout {
 
     private HelveticaTextView mTitleText;
-    private HelveticaButton mRightButton;
+    private ImageView mRightButton;
 
     public MyActionBar(Context context) {
         super(context, null);
@@ -29,7 +29,7 @@ public class MyActionBar extends RelativeLayout {
 //        mContext = context;
         LayoutInflater.from(context).inflate(R.layout.widget_actionbar, this, true);
         mTitleText = (HelveticaTextView) findViewById(R.id.title);
-        mRightButton = (HelveticaButton) findViewById(R.id.right_button);
+        mRightButton = (ImageView) findViewById(R.id.right_button);
 //        mLeftButton = (ImageButton) findViewById(R.id.btn_titlebar_back);
 //        mRightButton = (ImageButton) findViewById(R.id.btn_titlebar_right);
 //        mSearchButton = (ImageButton) findViewById(R.id.btn_search);
@@ -59,7 +59,7 @@ public class MyActionBar extends RelativeLayout {
 
     public void setRightButton(int resId, OnClickListener listener) {
         mRightButton.setVisibility(VISIBLE);
-        mRightButton.setText(resId);
+        mRightButton.setBackgroundResource(resId);
         mRightButton.setOnClickListener(listener);
     }
 

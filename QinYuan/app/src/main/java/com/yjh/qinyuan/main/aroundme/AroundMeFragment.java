@@ -2,6 +2,7 @@ package com.yjh.qinyuan.main.aroundme;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,7 @@ import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.BaseFragment;
 import com.yjh.qinyuan.gson.ShopMarker;
 import com.yjh.qinyuan.gson.ShopMarkerModel;
+import com.yjh.qinyuan.main.DetailActivity;
 import com.yjh.qinyuan.main.MainActivity;
 import com.yjh.qinyuan.main.section.DetailFragment;
 import com.yjh.qinyuan.task.GetMarkerListTask;
@@ -60,7 +62,7 @@ public class AroundMeFragment extends BaseFragment {
         }
 
         getActionBar().setTitle(R.string.around_me);
-        getActionBar().setRightButton(R.string.refresh, new View.OnClickListener() {
+        getActionBar().setRightButton(R.drawable.ico_info_normal, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMap.clear();
@@ -122,15 +124,18 @@ public class AroundMeFragment extends BaseFragment {
 //                        LatLng llNew = new LatLng(ll.latitude + 0.005, ll.longitude + 0.005);
 //                        marker.setPosition(llNew);
                         mMap.hideInfoWindow();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable(Constants.MODEL_TOWN_BRANCH, mSelectedShopMarker);
-                        DetailFragment fragment = new DetailFragment();
-                        fragment.setArguments(bundle);
-                        FragmentManager fragmentManager = getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.replace(R.id.content, fragment);
-                        fragmentTransaction.commit();
+//                        Bundle bundle = new Bundle();
+//                        bundle.putSerializable(Constants.MODEL_TOWN_BRANCH, mSelectedShopMarker);
+//                        DetailFragment fragment = new DetailFragment();
+//                        fragment.setArguments(bundle);
+//                        FragmentManager fragmentManager = getFragmentManager();
+//                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                        fragmentTransaction.addToBackStack(null);
+//                        fragmentTransaction.replace(R.id.content, fragment);
+//                        fragmentTransaction.commit();
+                        Intent intent = new Intent(getActivity(), DetailActivity.class);
+                        intent.putExtra(Constants.MODEL_TOWN_BRANCH, mSelectedShopMarker);
+                        startActivity(intent);
                     }
                 };
                 LatLng ll = marker.getPosition();
@@ -164,16 +169,23 @@ public class AroundMeFragment extends BaseFragment {
                 super.onSuccess(s);
                 mShopMarkers = HttpUtils.getJsonData(s, ShopMarkerModel.class).getShopMarkers();
                 for (ShopMarker marker : mShopMarkers) {
-                    addMarker(marker.getLatitude(), marker.getLongitude());
+                    addMarker(marker);
                 }
             }
         });
         task.executeGet();
     }
 
-    private void addMarker(double latitude, double longitude) {
-        LatLng point = new LatLng(latitude, longitude);
-        BitmapDescriptor bitmap = BitmapDescriptorFactory.fromResource(R.drawable.icon_marka);
+    private void addMarker(ShopMarker marker) {
+        LatLng point = new LatLng(marker.getLatitude(), marker.getLongitude());
+        BitmapDescriptor bitmap = null;
+        if (marker.getPtId() == 1000) {
+            bitmap = BitmapDescriptorFactory.fromResource(R.drawable.ico_pin_green);
+        } else if (marker.getPtId() == 1002) {
+            bitmap = BitmapDescriptorFactory.fromResource(R.drawable.ico_pin_purple);
+        } else {
+            bitmap = BitmapDescriptorFactory.fromResource(R.drawable.ico_pin_red);
+        }
         OverlayOptions option = new MarkerOptions().position(point).icon(bitmap);
         mMarkers.add((Marker) mMap.addOverlay(option));
     }

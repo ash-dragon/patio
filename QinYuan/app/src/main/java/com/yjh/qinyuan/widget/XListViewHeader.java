@@ -18,7 +18,7 @@ public class XListViewHeader extends LinearLayout {
 	private LinearLayout mContainer;
 	private ImageView mArrowImageView;
 	private ProgressBar mProgressBar;
-	private HelveticaTextView mHintTextView;
+	private TextView mHintTextView;
 	private int mState = STATE_NORMAL;
 
 	private Animation mRotateUpAnim;
@@ -51,7 +51,7 @@ public class XListViewHeader extends LinearLayout {
 		setGravity(Gravity.BOTTOM);
 
 		mArrowImageView = (ImageView) findViewById(R.id.xlistview_header_arrow);
-		mHintTextView = (HelveticaTextView) findViewById(R.id.xlistview_header_hint_textview);
+		mHintTextView = (TextView) findViewById(R.id.xlistview_header_hint_textview);
 		mProgressBar = (ProgressBar) findViewById(R.id.xlistview_header_progressbar);
 
 		mRotateUpAnim = new RotateAnimation(0.0f, -180.0f,

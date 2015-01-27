@@ -20,12 +20,13 @@ import com.yjh.qinyuan.task.GetSiteListTask;
 import com.yjh.qinyuan.task.RequestCallBack;
 import com.yjh.qinyuan.util.Constants;
 import com.yjh.qinyuan.util.HttpUtils;
+import com.yjh.qinyuan.widget.XListView;
 
 import java.util.ArrayList;
 
 public class SiteListFragment extends BaseFragment {
 
-    private ListView mListView;
+    private XListView mListView;
     private ArrayList<Site> mSites;
 
     @Override
@@ -47,12 +48,15 @@ public class SiteListFragment extends BaseFragment {
 
     @Override
     public void init() {
-        mListView = (ListView) mRootView.findViewById(R.id.list_view);
+        mListView = (XListView) mRootView.findViewById(R.id.list_view);
+        mListView.setPullRefreshEnable(true);
+        mListView.setPullLoadEnable(false);
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(Constants.MODEL_SITE, mSites.get(position));
+                bundle.putSerializable(Constants.MODEL_SITE, mSites.get(position - 1));
                 AgentListFragment fragment = new AgentListFragment();
                 fragment.setArguments(bundle);
                 FragmentManager fragmentManager = getFragmentManager();
@@ -60,6 +64,18 @@ public class SiteListFragment extends BaseFragment {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.content, fragment);
                 fragmentTransaction.commit();
+            }
+        });
+
+        mListView.setXListViewListener(new XListView.IXListViewListener() {
+            @Override
+            public void onRefresh() {
+                getSitesTask(mRootView);
+            }
+
+            @Override
+            public void onLoadMore() {
+
             }
         });
 
@@ -74,21 +90,31 @@ public class SiteListFragment extends BaseFragment {
             @Override
             public void onSuccess(String s) {
                 super.onSuccess(s);
-                SiteModel model = HttpUtils.getJsonData(s, SiteModel.class);
-                ArrayList<String> names = new ArrayList<>();
+                mListView.completeLoad();
+                try {
+                    SiteModel model = HttpUtils.getJsonData(s, SiteModel.class);
+                    ArrayList<String> names = new ArrayList<>();
+                    for (Site site : model.getSites()) {
+                        names.add(site.getCityName());
+                        mSites.add(site);
+                    }
 
-                for (Site site : model.getSites()) {
-                    names.add(site.getCityName());
-                    mSites.add(site);
+                    if (names.size() > 0) {
+                        rootView.findViewById(R.id.no_data_text).setVisibility(View.GONE);
+                        mListView.setAdapter(new ArrayAdapter<String>(getActivity(),
+                                android.R.layout.simple_list_item_1, names));
+                    } else {
+                        rootView.findViewById(R.id.no_data_text).setVisibility(View.VISIBLE);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            }
 
-                if (names.size() > 0) {
-                    rootView.findViewById(R.id.no_data_text).setVisibility(View.GONE);
-                    mListView.setAdapter(new ArrayAdapter<String>(getActivity(),
-                            android.R.layout.simple_list_item_1, names));
-                } else {
-                    rootView.findViewById(R.id.no_data_text).setVisibility(View.VISIBLE);
-                }
+            @Override
+            public void onFailure(Throwable t, int errorNo, String strMsg) {
+                super.onFailure(t, errorNo, strMsg);
+                mListView.completeLoad();
             }
         });
         task.executeGet();
