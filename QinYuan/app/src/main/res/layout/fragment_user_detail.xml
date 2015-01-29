@@ -17,7 +17,7 @@
 
     <com.yjh.qinyuan.widget.HelveticaTextView
         android:id="@+id/contact"
-        style="@style/label_text"
+        style="@style/value_text"
         android:layout_toRightOf="@id/label_contact" />
 
     <com.yjh.qinyuan.widget.HelveticaTextView
@@ -28,7 +28,9 @@
 
     <com.yjh.qinyuan.widget.HelveticaTextView
         android:id="@+id/phone1"
-        style="@style/label_text"
+        style="@style/value_text"
+        android:autoLink="phone"
+        android:textColorLink="@color/main"
         android:layout_below="@+id/contact"
         android:layout_toRightOf="@id/label_phone1"/>
 
@@ -40,7 +42,9 @@
 
     <com.yjh.qinyuan.widget.HelveticaTextView
         android:id="@+id/phone2"
-        style="@style/label_text"
+        style="@style/value_text"
+        android:autoLink="phone"
+        android:textColorLink="@color/main"
         android:layout_below="@+id/label_phone1"
         android:layout_toRightOf="@id/label_phone1" />
 
@@ -52,7 +56,7 @@
 
     <com.yjh.qinyuan.widget.HelveticaTextView
         android:id="@+id/address"
-        style="@style/label_text"
+        style="@style/value_text"
         android:layout_below="@+id/phone2"
         android:layout_toRightOf="@+id/label_address" />
 
@@ -64,7 +68,7 @@
 
     <com.yjh.qinyuan.widget.HelveticaTextView
         android:id="@+id/remark"
-        style="@style/label_text"
+        style="@style/value_text"
         android:layout_below="@+id/address"
         android:layout_toRightOf="@+id/label_remark" />
 </RelativeLayout>

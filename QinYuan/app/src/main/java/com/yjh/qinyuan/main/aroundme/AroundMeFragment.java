@@ -62,7 +62,7 @@ public class AroundMeFragment extends BaseFragment {
         }
 
         getActionBar().setTitle(R.string.around_me);
-        getActionBar().setRightButton(R.drawable.ico_info_normal, new View.OnClickListener() {
+        getActionBar().setRightButton(R.drawable.btn_refresh, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mMap.clear();

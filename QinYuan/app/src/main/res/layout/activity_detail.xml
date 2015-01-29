@@ -49,11 +49,21 @@
                 android:layout_below="@+id/n_name"
                 android:text="@string/phone1" />
 
+            <ImageView
+                android:id="@+id/icon_phone1"
+                style="@style/detail_text"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/btn_phone"
+                android:layout_marginRight="-5dp"
+                android:layout_marginTop="-5dp"
+                android:layout_below="@+id/n_name" />
+
             <com.yjh.qinyuan.widget.HelveticaTextView
                 android:id="@+id/phone1"
                 style="@style/detail_text"
                 android:layout_below="@+id/n_name"
                 android:layout_toRightOf="@id/label_phone1"
+                android:layout_toLeftOf="@+id/icon_phone1"
                 android:textColorLink="@color/main"
                 android:autoLink="phone" />
 
@@ -63,11 +73,21 @@
                 android:layout_below="@+id/label_phone1"
                 android:text="@string/phone2" />
 
+            <ImageView
+                android:id="@+id/icon_phone2"
+                style="@style/detail_text"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="-5dp"
+                android:src="@drawable/btn_phone"
+                android:layout_marginTop="-5dp"
+                android:layout_below="@+id/label_phone1" />
+
             <com.yjh.qinyuan.widget.HelveticaTextView
                 android:id="@+id/phone2"
                 style="@style/detail_text"
                 android:layout_below="@+id/label_phone1"
                 android:layout_toRightOf="@id/label_phone1"
+                android:layout_toLeftOf="@+id/icon_phone2"
                 android:textColorLink="@color/main"
                 android:autoLink="phone" />
         </RelativeLayout>

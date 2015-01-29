@@ -15,9 +15,10 @@ import com.yjh.qinyuan.gson.UserData;
 import com.yjh.qinyuan.gson.UserInfoModel;
 import com.yjh.qinyuan.task.LogoutTask;
 import com.yjh.qinyuan.task.RequestCallBack;
+import com.yjh.qinyuan.util.Utils;
 import com.yjh.qinyuan.widget.HelveticaTextView;
 
-public class UserInfoFragment extends BaseFragment {
+public class UserInfoFragment extends BaseFragment implements View.OnClickListener {
 
     private UserData mUserData;
 
@@ -50,12 +51,9 @@ public class UserInfoFragment extends BaseFragment {
         phone2Text.setText(mUserData.getPhone2());
         categoryText.setText(MyApplication.getUserTypeRes(mUserData.getUserType()));
 
-        mRootView.findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logoutTask();
-            }
-        });
+        mRootView.findViewById(R.id.logout).setOnClickListener(this);
+        mRootView.findViewById(R.id.icon_phone1).setOnClickListener(this);
+        mRootView.findViewById(R.id.icon_phone2).setOnClickListener(this);
     }
 
     private void logoutTask() {
@@ -75,5 +73,22 @@ public class UserInfoFragment extends BaseFragment {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         getActivity().finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.logout:
+                logoutTask();
+                break;
+            case R.id.icon_phone1:
+                Utils.phoneCall(getActivity(), ((HelveticaTextView)
+                        mRootView.findViewById(R.id.phone1)).getText().toString());
+                break;
+            case R.id.icon_phone2:
+                Utils.phoneCall(getActivity(), ((HelveticaTextView)
+                        mRootView.findViewById(R.id.phone2)).getText().toString());
+                break;
+        }
     }
 }

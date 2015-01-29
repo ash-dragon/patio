@@ -56,15 +56,24 @@
         android:layout_below="@+id/label_name"
         android:text="@string/info_phone1"/>
 
+    <ImageView
+        android:id="@+id/icon_phone1"
+        style="@style/detail_text"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/btn_phone"
+        android:layout_below="@+id/label_name" />
+
     <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/value_text"
         android:id="@+id/phone1"
         android:autoLink="phone"
         android:textColorLink="@color/main"
-        android:layout_alignParentRight="true"
-        android:gravity="right"
+        android:layout_alignParentRight="false"
         android:layout_marginTop="5dp"
         android:layout_below="@+id/label_name"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/icon_phone1"
         android:layout_toRightOf="@+id/label_phone1"/>
 
     <TextView
@@ -80,15 +89,24 @@
         android:layout_below="@+id/label_phone1"
         android:text="@string/info_phone2"/>
 
+    <ImageView
+        android:id="@+id/icon_phone2"
+        style="@style/detail_text"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/btn_phone"
+        android:layout_below="@+id/label_phone1" />
+
     <com.yjh.qinyuan.widget.HelveticaTextView
         style="@style/value_text"
         android:id="@+id/phone2"
         android:autoLink="phone"
         android:textColorLink="@color/main"
-        android:layout_alignParentRight="true"
-        android:gravity="right"
+        android:layout_alignParentRight="false"
         android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
         android:layout_below="@+id/label_phone1"
+        android:layout_toLeftOf="@+id/icon_phone2"
         android:layout_toRightOf="@+id/label_phone2"/>
 
     <TextView

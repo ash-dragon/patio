@@ -15,6 +15,7 @@
         android:layout_centerHorizontal="true"/>
 
     <ImageView
+        android:layout_marginRight="10dp"
         android:id="@+id/right_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

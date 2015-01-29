@@ -1,9 +1,7 @@
 package com.yjh.qinyuan.main;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.baidu.location.LocationClientOption;
@@ -26,7 +24,7 @@ import com.yjh.qinyuan.util.Utils;
 import com.yjh.qinyuan.widget.HelveticaTextView;
 import com.yjh.qinyuan.widget.MyActionBar;
 
-public class DetailActivity extends BaseActivity {
+public class DetailActivity extends BaseActivity implements View.OnClickListener {
 
     private HelveticaTextView mTitleTextView;
     private HelveticaTextView mPhone1TextView;
@@ -70,6 +68,8 @@ public class DetailActivity extends BaseActivity {
         mAddressTextView.setText(mBranch.getAddress());
         mCategory1TextView.setText(mBranch.getPtName());
         mCategory2TextView.setText(mBranch.getCtName());
+        findViewById(R.id.icon_phone1).setOnClickListener(this);
+        findViewById(R.id.icon_phone2).setOnClickListener(this);
 
         mImageLoader = ImageLoader.getInstance();
         mImageLoader.init(ImageLoaderConfiguration.createDefault(this));
@@ -103,6 +103,18 @@ public class DetailActivity extends BaseActivity {
 
         OverlayOptions overlayOptions = new MarkerOptions().position(ll).icon(bitmap);
         mMap.addOverlay(overlayOptions);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.icon_phone1:
+                Utils.phoneCall(this, mPhone1TextView.getText().toString());
+                break;
+            case R.id.icon_phone2:
+                Utils.phoneCall(this, mPhone2TextView.getText().toString());
+                break;
+        }
     }
 
     @Override
