@@ -1,13 +1,19 @@
 package com.yjh.qinyuan.main.aroundme;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -31,8 +37,6 @@ import com.yjh.qinyuan.common.BaseFragment;
 import com.yjh.qinyuan.gson.ShopMarker;
 import com.yjh.qinyuan.gson.ShopMarkerModel;
 import com.yjh.qinyuan.main.DetailActivity;
-import com.yjh.qinyuan.main.MainActivity;
-import com.yjh.qinyuan.main.section.DetailFragment;
 import com.yjh.qinyuan.task.GetMarkerListTask;
 import com.yjh.qinyuan.task.RequestCallBack;
 import com.yjh.qinyuan.util.Constants;
@@ -50,6 +54,7 @@ public class AroundMeFragment extends BaseFragment {
     private ArrayList<Marker> mMarkers = new ArrayList<>();
     private ArrayList<ShopMarker> mShopMarkers = new ArrayList<>();
     private ShopMarker mSelectedShopMarker;
+    private PopupWindow mPopupWindow;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,47 +107,59 @@ public class AroundMeFragment extends BaseFragment {
         mMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(final Marker marker) {
-                Button button = new Button(getActivity());
                 for (int i = 0; i < mMarkers.size(); i++) {
                     if (marker == mMarkers.get(i)) {
+                        LatLng latLng = marker.getPosition();
+                        Point p = mMap.getProjection().toScreenLocation(latLng);
+                            //向上平移30 使图标在Marker的上方
+                        p.y -= (int) TypedValue.applyDimension(TypedValue
+                                .COMPLEX_UNIT_DIP, 24, getActivity().getResources().getDisplayMetrics());
                         mSelectedShopMarker = mShopMarkers.get(i);
-                        button.setText(mSelectedShopMarker.getnName() + "\n" + mSelectedShopMarker.getPhone1());
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                            }
-                        });
-                        break;
+                        String text = mSelectedShopMarker.getnName() + "\n" + mSelectedShopMarker.getPhone1();
+                        showPopupWindow(p, text);
                     }
                 }
-                InfoWindow.OnInfoWindowClickListener listener = new InfoWindow.OnInfoWindowClickListener() {
-                    @Override
-                    public void onInfoWindowClick() {
-
-//                        LatLng ll = marker.getPosition();
-//                        LatLng llNew = new LatLng(ll.latitude + 0.005, ll.longitude + 0.005);
-//                        marker.setPosition(llNew);
-                        mMap.hideInfoWindow();
-//                        Bundle bundle = new Bundle();
-//                        bundle.putSerializable(Constants.MODEL_TOWN_BRANCH, mSelectedShopMarker);
-//                        DetailFragment fragment = new DetailFragment();
-//                        fragment.setArguments(bundle);
-//                        FragmentManager fragmentManager = getFragmentManager();
-//                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                        fragmentTransaction.addToBackStack(null);
-//                        fragmentTransaction.replace(R.id.content, fragment);
-//                        fragmentTransaction.commit();
-                        Intent intent = new Intent(getActivity(), DetailActivity.class);
-                        intent.putExtra(Constants.MODEL_TOWN_BRANCH, mSelectedShopMarker);
-                        startActivity(intent);
-                    }
-                };
-                LatLng ll = marker.getPosition();
-                InfoWindow infoWindow = new InfoWindow(BitmapDescriptorFactory.fromView(button), ll, 0, listener);
-                mMap.showInfoWindow(infoWindow);
 
                 return true;
+            }
+        });
+    }
+
+    private void showPopupWindow( Point p, String text) {
+        Resources resources = getActivity().getResources();
+        int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, resources.getDisplayMetrics());
+        int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 120, resources.getDisplayMetrics());
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupView;
+        int windowWidth = getActivity().getResources().getDisplayMetrics().widthPixels;
+        if (p.x + width / 2 > windowWidth) {
+            popupView  =inflater.inflate(R.layout.info_right_view, null);
+        } else if (p.x - width / 2 < 0) {
+            popupView  =inflater.inflate(R.layout.info_left_view, null);
+        } else {
+            popupView  =inflater.inflate(R.layout.info_middle_view, null);
+        }
+        TextView textView = (TextView) popupView.findViewById(R.id.name);
+        textView.setText(text);
+        mPopupWindow = new PopupWindow(popupView, width, height, true);
+        mPopupWindow.setOutsideTouchable(true);
+        if (p.x + width / 2 > windowWidth) {
+            mPopupWindow.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ico_dialog_mapr_normal));
+        } else if (p.x - width / 2 < 0) {
+            mPopupWindow.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ico_dialog_mapl_normal));
+        } else {
+            mPopupWindow.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.ico_dialog_map_normal));
+        }
+        View parent = getActivity().getWindow().getDecorView();
+        mPopupWindow.showAtLocation(parent, Gravity.NO_GRAVITY, p.x - width / 2, p.y - height / 2);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mMap.hideInfoWindow();
+                mPopupWindow.dismiss();
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra(Constants.MODEL_TOWN_BRANCH, mSelectedShopMarker);
+                startActivity(intent);
             }
         });
     }
@@ -152,6 +169,9 @@ public class AroundMeFragment extends BaseFragment {
             @Override
             public void onMapClick(LatLng latLng) {
                 mMap.hideInfoWindow();
+                if (mPopupWindow != null && mPopupWindow.isShowing()) {
+                    mPopupWindow.dismiss();
+                }
             }
 
             @Override
@@ -225,15 +245,15 @@ public class AroundMeFragment extends BaseFragment {
         super.onDestroy();
     }
 
-    @Override
-    public void onResume() {
-        mMapView.onResume();
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        mMapView.onPause();
-        super.onPause();
-    }
+//    @Override
+//    public void onResume() {
+//        mMapView.onResume();
+//        super.onResume();
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        mMapView.onPause();
+//        super.onPause();
+//    }
 }

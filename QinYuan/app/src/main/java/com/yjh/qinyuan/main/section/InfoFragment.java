@@ -12,9 +12,10 @@ import com.yjh.qinyuan.common.BaseFragment;
 import com.yjh.qinyuan.gson.Agent;
 import com.yjh.qinyuan.gson.Site;
 import com.yjh.qinyuan.util.Constants;
+import com.yjh.qinyuan.util.Utils;
 import com.yjh.qinyuan.widget.HelveticaTextView;
 
-public class InfoFragment extends BaseFragment {
+public class InfoFragment extends BaseFragment implements View.OnClickListener {
 
     private HelveticaTextView mContact;
     private HelveticaTextView mPhone1;
@@ -67,5 +68,20 @@ public class InfoFragment extends BaseFragment {
         mPhone2 = (HelveticaTextView) mRootView.findViewById(R.id.phone2);
         mAddress = (HelveticaTextView) mRootView.findViewById(R.id.address);
         mRemark = (HelveticaTextView) mRootView.findViewById(R.id.remark);
+
+        mRootView.findViewById(R.id.icon_phone1).setOnClickListener(this);
+        mRootView.findViewById(R.id.icon_phone2).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.icon_phone1:
+                Utils.phoneCall(getActivity(), mPhone1.getText().toString());
+                break;
+            case R.id.icon_phone2:
+                Utils.phoneCall(getActivity(), mPhone2.getText().toString());
+                break;
+        }
     }
 }

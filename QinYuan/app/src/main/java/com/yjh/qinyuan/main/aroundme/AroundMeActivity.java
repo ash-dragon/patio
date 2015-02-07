@@ -28,4 +28,5 @@ public class AroundMeActivity extends TabActivity {
         transaction.replace(R.id.content, fragment);
         transaction.commit();
     }
+
 }

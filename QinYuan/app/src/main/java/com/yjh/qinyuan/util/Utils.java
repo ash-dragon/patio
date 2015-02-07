@@ -13,9 +13,9 @@ public class Utils {
     public static DisplayImageOptions getImageOptions() {
         return new DisplayImageOptions.Builder()
                 .displayer(new RoundedBitmapDisplayer(0))
-                .showStubImage(R.drawable.ic_launcher)
-                .showImageForEmptyUri(R.drawable.ic_launcher)
-                .showImageOnFail(R.drawable.ic_launcher)
+                .showStubImage(R.drawable.placeholder)
+                .showImageForEmptyUri(R.drawable.placeholder)
+                .showImageOnFail(R.drawable.placeholder)
                 .cacheOnDisc()
                 .build();
     }

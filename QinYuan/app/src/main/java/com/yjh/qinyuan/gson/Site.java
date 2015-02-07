@@ -91,7 +91,7 @@ public class Site implements Serializable {
     }
 
     public String getAddress() {
-        return address;
+        return province + city + address;
     }
 
     public void setAddress(String address) {

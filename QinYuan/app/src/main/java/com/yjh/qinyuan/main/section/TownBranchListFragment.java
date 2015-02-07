@@ -44,7 +44,7 @@ public class TownBranchListFragment extends BaseFragment {
         }
 
         getActionBar().setTitle(mAgent.getAgentName());
-        getActionBar().setRightButton(R.drawable.ico_info_normal, new View.OnClickListener() {
+        getActionBar().setRightButton(R.drawable.btn_info, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();

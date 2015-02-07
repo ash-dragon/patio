@@ -170,7 +170,7 @@ public class TownBranch implements Serializable {
     }
 
     public String getAddress() {
-        return address;
+        return province + city + country + town + address;
     }
 
     public void setAddress(String address) {

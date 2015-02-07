@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yjh.qinyuan.LoginActivity;
-import com.yjh.qinyuan.MyApplication;
 import com.yjh.qinyuan.R;
 import com.yjh.qinyuan.common.BaseFragment;
 import com.yjh.qinyuan.gson.UserData;
@@ -49,7 +48,14 @@ public class UserInfoFragment extends BaseFragment implements View.OnClickListen
         nameText.setText(mUserData.getName());
         phone1Text.setText(mUserData.getPhone1());
         phone2Text.setText(mUserData.getPhone2());
-        categoryText.setText(MyApplication.getUserTypeRes(mUserData.getUserType()));
+
+        if (mUserData.getUserType() == 0) {
+            categoryText.setText(R.string.type_1);
+        } else if (mUserData.getUserType() == 1) {
+            categoryText.setText(R.string.type_2);
+        } else if (mUserData.getUserType() == 2) {
+            categoryText.setText(R.string.type_3);
+        }
 
         mRootView.findViewById(R.id.logout).setOnClickListener(this);
         mRootView.findViewById(R.id.icon_phone1).setOnClickListener(this);

@@ -108,7 +108,7 @@ public class Agent implements Serializable {
     }
 
     public String getAddress() {
-        return address;
+        return province + city + country + address;
     }
 
     public void setAddress(String address) {

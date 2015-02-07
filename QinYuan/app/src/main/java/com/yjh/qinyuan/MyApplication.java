@@ -19,16 +19,4 @@ public class MyApplication extends SugarApp {
         super.onCreate();
     }
 
-    public static int getUserTypeRes(int type) {
-        switch (type) {
-            case TYPE_MANAGE_CENTER:
-                return R.string.type_manage_center;
-            case TYPE_AGENT:
-                return R.string.type_agent;
-            case TYPE_SHOP:
-                return R.string.type_shop;
-        }
-
-        return R.string.type_manage_center;
-    }
 }
