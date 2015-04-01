@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import com.yjh.qinyuan.util.Constants;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class TownBranch implements Serializable {
     @SerializedName("NID") int nid;
@@ -32,6 +33,28 @@ public class TownBranch implements Serializable {
     @SerializedName("imgurl5") String image5;
     @SerializedName("Longitude") double longitude;
     @SerializedName("Latitude") double latitude;
+
+    public ArrayList<String> getUrls() {
+        ArrayList<String> urls = new ArrayList<>();
+
+        if (!image1.isEmpty() && !image1.trim().equals("")) {
+            urls.add(image1);
+        }
+        if (!image2.isEmpty() && !image2.trim().equals("")) {
+            urls.add(image2);
+        }
+        if (!image3.isEmpty() && !image3.trim().equals("")) {
+            urls.add(image3);
+        }
+        if (!image4.isEmpty() && !image4.trim().equals("")) {
+            urls.add(image4);
+        }
+        if (!image5.isEmpty() && !image5.trim().equals("")) {
+            urls.add(image5);
+        }
+
+        return urls;
+    }
 
     public int getNid() {
         return nid;

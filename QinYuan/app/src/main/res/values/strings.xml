@@ -69,8 +69,6 @@
     <string name="category1">一级类别：</string>
     <string name="category2">二级类别：</string>
     <string name="remark">备注：</string>
-    // test    <string name="info">Info</string>
-    <string name="refresh">Refresh</string>
-    <string name="title_activity_detail">DetailActivity</string>
+    <string name="images">图    片</string>
 
 </resources>

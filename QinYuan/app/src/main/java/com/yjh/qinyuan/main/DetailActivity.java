@@ -1,5 +1,6 @@
 package com.yjh.qinyuan.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -70,6 +71,7 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
         mCategory2TextView.setText(mBranch.getCtName());
         findViewById(R.id.icon_phone1).setOnClickListener(this);
         findViewById(R.id.icon_phone2).setOnClickListener(this);
+        findViewById(R.id.image).setOnClickListener(this);
 
         mImageLoader = ImageLoader.getInstance();
         mImageLoader.init(ImageLoaderConfiguration.createDefault(this));
@@ -113,6 +115,11 @@ public class DetailActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.icon_phone2:
                 Utils.phoneCall(this, mPhone2TextView.getText().toString());
+                break;
+            case R.id.image:
+                Intent intent = new Intent(this, GalleryActivity.class);
+                intent.putExtra(Constants.TOWN_BRANCH_STRING, mBranch);
+                startActivity(intent);
                 break;
         }
     }

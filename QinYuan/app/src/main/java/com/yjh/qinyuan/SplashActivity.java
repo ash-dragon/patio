@@ -52,18 +52,18 @@ public class SplashActivity extends BaseActivity {
     }
 
     private boolean isValid() {
-        String valid_until = "30/07/2015";
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-        try {
-            Date strDate = sdf.parse(valid_until);
-            Log.d("DATE", "Decimal: " + (new Date().getTime()- strDate.getTime())/(24*60*60*1000));
-            if (new Date().after(strDate)) {
-                return false;
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        String valid_until = "30/07/2015";
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//
+//        try {
+//            Date strDate = sdf.parse(valid_until);
+//            Log.d("DATE", "Decimal: " + (new Date().getTime()- strDate.getTime())/(24*60*60*1000));
+//            if (new Date().after(strDate)) {
+//                return false;
+//            }
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         return true;
     }

@@ -23,5 +23,6 @@ public class Constants {
     public static final String LONGITUDE = "Longitude";
     public static final String LATITUDE = "Latitude";
     public static final String LEN = "len";
+    public static final String TOWN_BRANCH_STRING = "town_branch_string";
 
 }
