@@ -16,6 +16,7 @@ import com.yjh.qinyuan.util.Constants;
 import java.util.ArrayList;
 
 import it.sephiroth.android.library.imagezoom.ImageViewTouch;
+import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 
 public class GalleryAdapter extends PagerAdapter {
 
@@ -52,6 +53,7 @@ public class GalleryAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = mInflater.inflate(R.layout.gallery_image, container, false);
         ImageViewTouch imageView = (ImageViewTouch) itemView.findViewById(R.id.img);
+        imageView.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
         mImageLoader.displayImage(Constants.DOMAIN + mUrls.get(position), imageView, mImageOptions);
         container.addView(itemView);
 
