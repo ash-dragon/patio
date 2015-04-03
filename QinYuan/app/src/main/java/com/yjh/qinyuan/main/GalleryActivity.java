@@ -1,7 +1,9 @@
 package com.yjh.qinyuan.main;
 
+import android.content.pm.ActivityInfo;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 
 import com.viewpagerindicator.CirclePageIndicator;
 import com.yjh.qinyuan.R;
@@ -13,7 +15,7 @@ import com.yjh.qinyuan.widget.MyActionBar;
 import java.util.ArrayList;
 
 
-public class GalleryActivity extends BaseActivity {
+public class GalleryActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +25,6 @@ public class GalleryActivity extends BaseActivity {
         init();
     }
 
-    @Override
     public void init() {
         ((MyActionBar) findViewById(R.id.action_bar)).setTitle(R.string.images);
         TownBranch branch = (TownBranch) getIntent().getSerializableExtra(Constants.TOWN_BRANCH_STRING);

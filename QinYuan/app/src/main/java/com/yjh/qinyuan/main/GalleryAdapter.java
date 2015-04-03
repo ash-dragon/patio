@@ -11,8 +11,11 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.yjh.qinyuan.R;
+import com.yjh.qinyuan.util.Constants;
 
 import java.util.ArrayList;
+
+import it.sephiroth.android.library.imagezoom.ImageViewTouch;
 
 public class GalleryAdapter extends PagerAdapter {
 
@@ -48,8 +51,8 @@ public class GalleryAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = mInflater.inflate(R.layout.gallery_image, container, false);
-        ImageView imageView = (ImageView) itemView.findViewById(R.id.img);
-        mImageLoader.displayImage(mUrls.get(position), imageView, mImageOptions);
+        ImageViewTouch imageView = (ImageViewTouch) itemView.findViewById(R.id.img);
+        mImageLoader.displayImage(Constants.DOMAIN + mUrls.get(position), imageView, mImageOptions);
         container.addView(itemView);
 
         return itemView;
