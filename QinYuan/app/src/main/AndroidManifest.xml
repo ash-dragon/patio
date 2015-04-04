@@ -89,7 +89,8 @@
             android:name=".main.DetailActivity" >
         </activity>
         <activity
-            android:name=".main.GalleryActivity"  >
+            android:name=".main.GalleryActivity"
+            android:configChanges="orientation|keyboardHidden" >
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN" />-->
 <!---->
