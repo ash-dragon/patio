@@ -38,19 +38,19 @@ public class TownBranch implements Serializable {
         ArrayList<String> urls = new ArrayList<>();
 
         if (!image1.isEmpty() && !image1.trim().equals("")) {
-            urls.add(image1);
+            urls.add(getImage1());
         }
         if (!image2.isEmpty() && !image2.trim().equals("")) {
-            urls.add(image2);
+            urls.add(getImage2());
         }
         if (!image3.isEmpty() && !image3.trim().equals("")) {
-            urls.add(image3);
+            urls.add(getImage3());
         }
         if (!image4.isEmpty() && !image4.trim().equals("")) {
-            urls.add(image4);
+            urls.add(getImage4());
         }
         if (!image5.isEmpty() && !image5.trim().equals("")) {
-            urls.add(image5);
+            urls.add(getImage5());
         }
 
         return urls;
@@ -217,7 +217,7 @@ public class TownBranch implements Serializable {
     }
 
     public String getImage2() {
-        return image2;
+        return Constants.DOMAIN + image2;
     }
 
     public void setImage2(String image2) {
@@ -225,7 +225,7 @@ public class TownBranch implements Serializable {
     }
 
     public String getImage3() {
-        return image3;
+        return Constants.DOMAIN + image3;
     }
 
     public void setImage3(String image3) {
@@ -233,7 +233,7 @@ public class TownBranch implements Serializable {
     }
 
     public String getImage4() {
-        return image4;
+        return Constants.DOMAIN + image4;
     }
 
     public void setImage4(String image4) {
@@ -241,7 +241,7 @@ public class TownBranch implements Serializable {
     }
 
     public String getImage5() {
-        return image5;
+        return Constants.DOMAIN + image5;
     }
 
     public void setImage5(String image5) {

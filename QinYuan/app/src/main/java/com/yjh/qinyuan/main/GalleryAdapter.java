@@ -11,6 +11,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.yjh.qinyuan.R;
+import com.yjh.qinyuan.util.Utils;
 
 import java.util.ArrayList;
 
@@ -26,8 +27,7 @@ public class GalleryAdapter extends PagerAdapter {
         this.mInflater = LayoutInflater.from(context);
         this.mImageLoader = ImageLoader.getInstance();
         this.mImageLoader.init(ImageLoaderConfiguration.createDefault(context));
-        this.mImageOptions = new DisplayImageOptions.Builder()
-                                .cacheOnDisk(true).cacheInMemory(true).build();
+        this.mImageOptions = Utils.getImageOptions();
     }
 
     @Override
