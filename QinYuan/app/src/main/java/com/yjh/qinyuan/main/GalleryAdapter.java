@@ -5,19 +5,14 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.yjh.qinyuan.R;
-import com.yjh.qinyuan.util.Utils;
-import com.yjh.qinyuan.util.Constants;
+import com.yjh.qinyuan.widget.ScaleImageView;
 
 import java.util.ArrayList;
-
-import it.sephiroth.android.library.imagezoom.ImageViewTouch;
-import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 
 public class GalleryAdapter extends PagerAdapter {
 
@@ -31,7 +26,13 @@ public class GalleryAdapter extends PagerAdapter {
         this.mInflater = LayoutInflater.from(context);
         this.mImageLoader = ImageLoader.getInstance();
         this.mImageLoader.init(ImageLoaderConfiguration.createDefault(context));
-        this.mImageOptions = Utils.getImageOptions();
+        this.mImageOptions = new DisplayImageOptions.Builder()
+                .showStubImage(R.drawable.placeholder)
+                .showImageForEmptyUri(R.drawable.placeholder)
+                .showImageOnFail(R.drawable.placeholder)
+                .cacheOnDisc()
+                .cacheInMemory(true)
+                .build();;
     }
 
     @Override
@@ -52,8 +53,8 @@ public class GalleryAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = mInflater.inflate(R.layout.gallery_image, container, false);
-        ImageViewTouch imageView = (ImageViewTouch) itemView.findViewById(R.id.img);
-        imageView.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
+        ScaleImageView imageView = (ScaleImageView) itemView.findViewById(R.id.img);
+//        imageView.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
         mImageLoader.displayImage(mUrls.get(position), imageView, mImageOptions);
         container.addView(itemView);
 

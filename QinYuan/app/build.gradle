@@ -27,5 +27,4 @@ dependencies {
     compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/locSDK_3.1.jar')
     compile project(':app:libraries:Android-ViewPagerIndicator-master:library')
-    compile project(':app:libraries:ImageViewZoom:library')
 }

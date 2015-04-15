@@ -17,6 +17,7 @@ public class Utils {
                 .showImageForEmptyUri(R.drawable.placeholder)
                 .showImageOnFail(R.drawable.placeholder)
                 .cacheOnDisc()
+                .cacheInMemory(true)
                 .build();
     }
 
